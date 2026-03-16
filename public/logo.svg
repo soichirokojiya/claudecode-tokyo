@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" width="400" height="80">
+  <!-- Pattern A: Code Bracket + Wordmark -->
+  <!-- Light mode version -->
+  <defs>
+    <style>
+      .logo-text { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; }
+    </style>
+  </defs>
+  <!-- Code bracket icon -->
+  <text x="0" y="56" class="logo-text" font-size="42" font-weight="700" fill="#d97757">&lt;</text>
+  <text x="20" y="56" class="logo-text" font-size="42" font-weight="700" fill="#141413">C</text>
+  <text x="44" y="56" class="logo-text" font-size="42" font-weight="700" fill="#d97757">&gt;</text>
+  <!-- Site name -->
+  <text x="72" y="42" class="logo-text" font-size="28" font-weight="700" fill="#141413">ClaudeCode</text>
+  <text x="72" y="68" class="logo-text" font-size="20" font-weight="400" fill="#d97757">.Tokyo</text>
+</svg>
