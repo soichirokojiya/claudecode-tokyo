@@ -4,6 +4,7 @@ description: "Claude CodeのPro（月$20）・Max（月$100〜）・API従量課
 date: "2026-03-15"
 lastUpdated: "2026-03-16"
 category: "pricing"
+thumbnail: "/images/articles/pricing.jpg"
 tags: ["料金", "プラン", "コスト"]
 summary:
   - "初心者はProプラン（月$20／約3,000円）で十分、Claude Codeの全機能が利用可能"

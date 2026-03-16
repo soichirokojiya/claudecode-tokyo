@@ -6,6 +6,7 @@ import {
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
+import Image from "next/image";
 import ShareButtons from "@/components/ShareButtons";
 import ArticleCard from "@/components/ArticleCard";
 
@@ -109,6 +110,20 @@ export default async function ArticlePage({ params }: Props) {
       </nav>
 
       <article>
+        {/* Hero Image */}
+        {article.thumbnail && (
+          <div className="relative aspect-[2/1] overflow-hidden bg-parchment-100 mb-8">
+            <Image
+              src={article.thumbnail}
+              alt={article.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 768px"
+              priority
+            />
+          </div>
+        )}
+
         {/* Header */}
         <header className="mb-10">
           <div className="flex items-center gap-2.5 mb-4">

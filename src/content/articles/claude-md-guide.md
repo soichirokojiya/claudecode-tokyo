@@ -4,6 +4,7 @@ description: "CLAUDE.mdファイルの書き方を実例テンプレート付き
 date: "2026-03-14"
 lastUpdated: "2026-03-16"
 category: "tips"
+thumbnail: "/images/articles/claude-md.jpg"
 tags: ["CLAUDE.md", "設定", "ベストプラクティス"]
 summary:
   - "CLAUDE.mdはプロジェクトルートに配置するAIへの指示書で、Claude Codeが自動で読み込む"
