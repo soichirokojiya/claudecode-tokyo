@@ -34,6 +34,7 @@ Y CombinatorのCEO、Garry Tan氏がオープンソースで公開した**Claude
 Garry Tan氏はシリコンバレーで最も影響力のある投資家の一人。彼がClaude Codeを活用したシステムをオープンソースで公開したことは、**Claude Codeの実用性を強く裏付ける**出来事として注目を集めています。
 
 > "gstackは実際にY Combinatorの開発フローで使われている。Claude Codeの能力を最大限に引き出すための仕組みだ。"
+> — Garry Tan (@garrytan) [GitHub: gstack](https://github.com/garrytan/gstack)
 
 ## gstackの構成
 
