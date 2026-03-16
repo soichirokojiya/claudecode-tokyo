@@ -14,8 +14,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const articles = getAllArticles();
-  return articles.map((article) => ({ slug: article.slug }));
+  return getAllArticles().map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -41,57 +40,64 @@ export default async function ArticlePage({ params }: Props) {
 
   const cat = getCategoryMeta(article.category);
 
-  // 関連記事: 同カテゴリから最大3件
-  const allArticles = getAllArticles();
-  const relatedArticles = allArticles
+  const related = getAllArticles()
     .filter((a) => a.category === article.category && a.slug !== slug)
-    .slice(0, 3);
+    .slice(0, 2);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
-      <nav className="mb-6 text-sm text-gray-500">
-        <Link href="/" className="hover:text-[#D97757]">
+    <div className="max-w-3xl mx-auto px-4 sm:px-0 py-12">
+      {/* Breadcrumb */}
+      <nav className="mb-8 text-sm text-parchment-400 font-medium">
+        <Link href="/" className="hover:text-parchment-900 transition-colors">
           トップ
         </Link>
         <span className="mx-2">/</span>
         <Link
           href={`/category/${article.category}`}
-          className="hover:text-[#D97757]"
+          className="hover:text-parchment-900 transition-colors"
         >
           {cat.name}
         </Link>
       </nav>
 
       <article>
-        <header className="mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <span className={`text-xs font-medium px-2 py-0.5 rounded ${cat.color}`}>
-              {cat.emoji} {cat.name}
+        {/* Header */}
+        <header className="mb-12">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-xs font-medium text-parchment-500">
+              {cat.name}
             </span>
-            <time className="text-xs text-gray-400">{article.date}</time>
-            <span className="text-xs text-gray-300">|</span>
-            <span className="text-xs text-gray-400">
+            <span className="text-parchment-300">&middot;</span>
+            <time className="text-xs text-parchment-400">{article.date}</time>
+            <span className="text-parchment-300">&middot;</span>
+            <span className="text-xs text-parchment-400">
               {article.readingTime}分で読める
             </span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl font-medium tracking-tight text-parchment-900 leading-tight">
             {article.title}
           </h1>
-          <p className="text-lg text-gray-600 mb-4">{article.description}</p>
-          <ShareButtons title={article.title} slug={slug} />
+          <p className="text-lg text-parchment-500 mt-4 leading-relaxed">
+            {article.description}
+          </p>
+          <div className="mt-6">
+            <ShareButtons title={article.title} slug={slug} />
+          </div>
         </header>
 
+        {/* Content */}
         <div
-          className="prose prose-gray max-w-none prose-headings:text-gray-900 prose-a:text-[#D97757] prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-gray-900 prose-pre:text-gray-100"
+          className="prose max-w-none"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
 
+        {/* Tags */}
         {article.tags.length > 0 && (
-          <div className="flex gap-2 mt-8 pt-6 border-t border-gray-200 flex-wrap">
+          <div className="flex gap-2 mt-12 pt-8 border-t border-parchment-200 flex-wrap">
             {article.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded"
+                className="text-sm text-parchment-400 font-mono"
               >
                 #{tag}
               </span>
@@ -99,31 +105,30 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         )}
 
-        {/* 記事下部のシェア */}
-        <div className="mt-8 pt-6 border-t border-gray-200">
+        {/* Bottom Share */}
+        <div className="mt-8 pt-8 border-t border-parchment-200">
           <ShareButtons title={article.title} slug={slug} />
         </div>
       </article>
 
-      {/* 関連記事 */}
-      {relatedArticles.length > 0 && (
-        <section className="mt-12 pt-8 border-t border-gray-200">
-          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="w-1 h-5 bg-[#D97757] rounded-full" />
+      {/* Related */}
+      {related.length > 0 && (
+        <section className="mt-16">
+          <h2 className="text-lg font-medium tracking-tight text-parchment-900 mb-6">
             関連記事
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {relatedArticles.map((a) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {related.map((a) => (
               <ArticleCard key={a.slug} {...a} />
             ))}
           </div>
         </section>
       )}
 
-      <div className="mt-8">
+      <div className="mt-12">
         <Link
           href="/"
-          className="text-[#D97757] hover:underline text-sm font-medium"
+          className="text-parchment-500 hover:text-parchment-900 text-sm font-medium transition-colors"
         >
           &larr; 記事一覧に戻る
         </Link>

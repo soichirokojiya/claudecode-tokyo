@@ -2,32 +2,29 @@
 
 export default function NewsletterCTA() {
   return (
-    <section className="bg-gray-900 rounded-xl p-8 text-center my-12">
-      <h2 className="text-xl font-bold text-white mb-2">
-        Claude Codeの最新情報を毎週お届け
+    <section className="rounded-[12px] border border-parchment-200 bg-parchment-100/50 px-8 py-8 mb-16 text-center">
+      <h2 className="text-lg font-medium tracking-tight text-parchment-900">
+        最新情報を受け取る
       </h2>
-      <p className="text-gray-400 text-sm mb-4">
-        Tips・アップデート・海外ニュースの翻訳をまとめて受信
+      <p className="text-parchment-500 text-sm mt-1.5 mb-5">
+        Claude Codeの最新Tips・アップデート・海外ニュースを毎週お届け
       </p>
       <form
-        className="flex gap-2 max-w-md mx-auto"
+        className="flex gap-2 max-w-sm mx-auto"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           type="email"
-          placeholder="メールアドレス"
-          className="flex-1 px-4 py-2.5 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-[#D97757] text-sm"
+          placeholder="you@example.com"
+          className="flex-1 px-4 py-2.5 rounded-[8px] bg-white border border-parchment-200 text-parchment-900 placeholder-parchment-400 focus:outline-none focus:border-accent text-sm font-mono"
         />
         <button
           type="submit"
-          className="px-6 py-2.5 bg-[#D97757] text-white rounded-lg font-medium hover:bg-[#c4643f] transition-colors text-sm"
+          className="px-5 py-2.5 bg-parchment-900 text-parchment-50 rounded-[8px] text-sm font-medium hover:bg-parchment-700 transition-colors"
         >
-          購読する
+          購読
         </button>
       </form>
-      <p className="text-xs text-gray-500 mt-3">
-        無料・いつでも解除可能
-      </p>
     </section>
   );
 }

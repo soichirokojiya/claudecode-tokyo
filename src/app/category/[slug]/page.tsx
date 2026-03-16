@@ -1,4 +1,8 @@
-import { getArticlesByCategory, CATEGORIES, getCategoryMeta } from "@/lib/articles";
+import {
+  getArticlesByCategory,
+  CATEGORIES,
+  getCategoryMeta,
+} from "@/lib/articles";
 import ArticleCard from "@/components/ArticleCard";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -17,41 +21,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cat = CATEGORIES.find((c) => c.slug === slug);
   if (!cat) return {};
   return {
-    title: `${cat.name} - ClaudeCode.Tokyo`,
+    title: `${cat.name}`,
     description: `Claude Codeの${cat.name}に関する記事一覧`,
   };
 }
 
 export default async function CategoryPage({ params }: Props) {
   const { slug } = await params;
-  const category = getCategoryMeta(slug);
   if (!CATEGORIES.find((c) => c.slug === slug)) notFound();
-
+  const category = getCategoryMeta(slug);
   const articles = getArticlesByCategory(slug);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
-      <nav className="mb-4 text-sm text-gray-500">
-        <Link href="/" className="hover:text-[#D97757]">
+    <div className="max-w-3xl mx-auto px-4 sm:px-0 py-12">
+      <nav className="mb-8 text-sm text-parchment-400 font-medium">
+        <Link href="/" className="hover:text-parchment-900 transition-colors">
           トップ
         </Link>
         <span className="mx-2">/</span>
-        <span>{category.name}</span>
+        <span className="text-parchment-900">{category.name}</span>
       </nav>
 
-      <h1 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-        <span>{category.emoji}</span>
+      <h1 className="text-3xl font-medium tracking-tight text-parchment-900 mb-8">
         {category.name}
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {articles.map((article) => (
           <ArticleCard key={article.slug} {...article} />
         ))}
       </div>
 
       {articles.length === 0 && (
-        <p className="text-center text-gray-400 py-20">
+        <p className="text-center text-parchment-400 py-20">
           このカテゴリの記事はまだありません
         </p>
       )}

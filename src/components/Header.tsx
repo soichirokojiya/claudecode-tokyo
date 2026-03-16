@@ -3,44 +3,47 @@ import { CATEGORIES } from "@/lib/articles";
 
 export default function Header() {
   return (
-    <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
-      <div className="max-w-5xl mx-auto px-4">
+    <header className="sticky top-0 z-50 bg-parchment-50/80 backdrop-blur-sm">
+      <div className="max-w-3xl mx-auto px-4 sm:px-0">
         <div className="flex items-center justify-between h-14">
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/logo.svg" alt="ClaudeCode.Tokyo" className="h-7" />
-            <span className="font-bold text-lg text-gray-900">
-              ClaudeCode<span className="text-[#D97757]">.Tokyo</span>
-            </span>
+          <Link
+            href="/"
+            className="text-parchment-900 font-semibold tracking-tight text-lg hover:text-accent transition-colors"
+          >
+            ClaudeCode<span className="text-accent">.Tokyo</span>
           </Link>
           <div className="flex items-center gap-4">
-            <span className="hidden sm:inline text-xs text-gray-400">
-              Claude Code専門メディア
-            </span>
             <a
               href="https://x.com/claudecodetokyo"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-gray-900 transition-colors"
-              aria-label="X (Twitter)"
+              className="text-parchment-400 hover:text-parchment-900 text-sm font-medium transition-colors"
             >
-              <svg
-                className="w-4 h-4"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
+              X
+            </a>
+            <a
+              href="https://github.com/soichirokojiya/claudecode-tokyo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-parchment-400 hover:text-parchment-900 text-sm font-medium transition-colors"
+            >
+              GitHub
             </a>
           </div>
         </div>
-        <nav className="flex gap-0.5 overflow-x-auto pb-2 -mb-px">
+        <nav className="flex gap-1 overflow-x-auto pb-3 -mb-px scrollbar-none">
+          <Link
+            href="/"
+            className="px-3 py-1.5 text-sm text-parchment-500 hover:text-parchment-900 hover:bg-parchment-100 rounded-md transition-colors whitespace-nowrap font-medium"
+          >
+            All
+          </Link>
           {CATEGORIES.map((cat) => (
             <Link
               key={cat.slug}
               href={`/category/${cat.slug}`}
-              className="px-3 py-1.5 text-sm text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors whitespace-nowrap flex items-center gap-1"
+              className="px-3 py-1.5 text-sm text-parchment-500 hover:text-parchment-900 hover:bg-parchment-100 rounded-md transition-colors whitespace-nowrap font-medium"
             >
-              <span className="text-xs">{cat.emoji}</span>
               {cat.name}
             </Link>
           ))}

@@ -9,7 +9,6 @@ interface Props {
   category: string;
   tags: string[];
   readingTime: number;
-  featured?: boolean;
 }
 
 export default function ArticleCard({
@@ -18,57 +17,29 @@ export default function ArticleCard({
   description,
   date,
   category,
-  tags,
   readingTime,
-  featured,
 }: Props) {
   const cat = getCategoryMeta(category);
 
   return (
-    <article className="group">
-      <Link href={`/articles/${slug}`} className="block h-full">
-        <div
-          className={`bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-[#D97757]/50 hover:shadow-md transform hover:scale-[1.01] transition-all duration-200 h-full flex flex-col ${
-            featured ? "" : ""
-          }`}
-        >
-          {/* カテゴリ別ビジュアルヘッダー */}
-          <div className="h-2 bg-gradient-to-r from-[#D97757] to-[#D97757]/60" />
-
-          <div className="p-5 flex-1 flex flex-col">
-            <div className="flex items-center gap-2 mb-2">
-              <span
-                className={`text-xs font-medium px-2 py-0.5 rounded ${cat.color}`}
-              >
-                {cat.emoji} {cat.name}
-              </span>
-              <time className="text-xs text-gray-400">{date}</time>
-              <span className="text-xs text-gray-300">|</span>
-              <span className="text-xs text-gray-400">
-                {readingTime}分
-              </span>
-            </div>
-            <h2 className="font-bold text-gray-900 group-hover:text-[#D97757] transition-colors text-base mb-2 line-clamp-2">
-              {title}
-            </h2>
-            <p className="text-sm text-gray-500 line-clamp-2 flex-1">
-              {description}
-            </p>
-            {tags.length > 0 && (
-              <div className="flex gap-1.5 mt-3 flex-wrap">
-                {tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[11px] text-gray-400 bg-gray-50 px-1.5 py-0.5 rounded"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
+    <Link href={`/articles/${slug}`} className="group block">
+      <article className="rounded-[12px] border border-parchment-200 bg-transparent px-6 py-5 transition-colors hover:border-parchment-300 hover:bg-parchment-100">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-xs font-medium text-parchment-500">
+            {cat.name}
+          </span>
+          <span className="text-parchment-300">&middot;</span>
+          <time className="text-xs text-parchment-400">{date}</time>
+          <span className="text-parchment-300">&middot;</span>
+          <span className="text-xs text-parchment-400">{readingTime}分</span>
         </div>
-      </Link>
-    </article>
+        <h2 className="text-parchment-900 font-medium tracking-tight leading-snug group-hover:text-accent transition-colors">
+          {title}
+        </h2>
+        <p className="text-parchment-500 text-[14px] leading-relaxed mt-1.5 line-clamp-2">
+          {description}
+        </p>
+      </article>
+    </Link>
   );
 }
