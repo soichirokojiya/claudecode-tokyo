@@ -1,16 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" width="400" height="80">
-  <!-- Pattern A: Code Bracket + Wordmark -->
-  <!-- Light mode version -->
-  <defs>
-    <style>
-      .logo-text { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; }
-    </style>
-  </defs>
-  <!-- Code bracket icon -->
-  <text x="0" y="56" class="logo-text" font-size="42" font-weight="700" fill="#d97757">&lt;</text>
-  <text x="20" y="56" class="logo-text" font-size="42" font-weight="700" fill="#141413">C</text>
-  <text x="44" y="56" class="logo-text" font-size="42" font-weight="700" fill="#d97757">&gt;</text>
-  <!-- Site name -->
-  <text x="72" y="42" class="logo-text" font-size="28" font-weight="700" fill="#141413">ClaudeCode</text>
-  <text x="72" y="68" class="logo-text" font-size="20" font-weight="400" fill="#d97757">.Tokyo</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" width="400" height="80" shape-rendering="crispEdges">
+  <!-- Pixel art <C> icon -->
+  <!-- < -->
+  <rect x="0" y="16" width="6" height="6" fill="#d97757"/>
+  <rect x="6" y="22" width="6" height="6" fill="#d97757"/>
+  <rect x="0" y="28" width="6" height="6" fill="#d97757"/>
+  <!-- C -->
+  <rect x="16" y="16" width="16" height="6" fill="#d97757"/>
+  <rect x="10" y="22" width="6" height="18" fill="#d97757"/>
+  <rect x="16" y="34" width="16" height="6" fill="#d97757"/>
+  <!-- > -->
+  <rect x="36" y="16" width="6" height="6" fill="#d97757"/>
+  <rect x="30" y="22" width="6" height="6" fill="#d97757"/>
+  <rect x="36" y="28" width="6" height="6" fill="#d97757"/>
+  <!-- Pixel text: ClaudeCode.Tokyo -->
+  <text x="56" y="35" font-family="'Playfair Display', Georgia, serif" font-size="32" font-weight="700" fill="#1c1917" letter-spacing="-1">ClaudeCode</text>
+  <text x="56" y="58" font-family="'Playfair Display', Georgia, serif" font-size="18" font-weight="400" fill="#d97757">.Tokyo</text>
 </svg>

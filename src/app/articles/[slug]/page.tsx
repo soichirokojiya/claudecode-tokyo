@@ -54,8 +54,8 @@ export default async function ArticlePage({ params }: Props) {
     datePublished: article.date,
     ...(article.lastUpdated && { dateModified: article.lastUpdated }),
     author: {
-      "@type": "Organization",
-      name: "ClaudeCode.Tokyo",
+      "@type": "Person",
+      name: article.author || "ClaudeCode.Tokyo編集部",
       url: "https://claudecode.tokyo",
     },
     publisher: {
@@ -146,6 +146,18 @@ export default async function ArticlePage({ params }: Props) {
           <p className="text-lg text-parchment-500 mt-4 leading-relaxed">
             {article.description}
           </p>
+          {/* Author */}
+          <div className="flex items-center gap-3 mt-5">
+            <div className="w-8 h-8 rounded-full bg-accent/15 flex items-center justify-center">
+              <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-parchment-800">{article.author || "ClaudeCode.Tokyo編集部"}</p>
+              <p className="text-xs text-parchment-400">{article.date} 公開</p>
+            </div>
+          </div>
           <div className="mt-6">
             <ShareButtons title={article.title} slug={slug} />
           </div>

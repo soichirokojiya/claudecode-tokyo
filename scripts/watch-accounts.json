@@ -11,7 +11,9 @@
     { "username": "deaboritas", "note": "日本のAI系発信者" },
     { "username": "and_and_and_and", "note": "日本のClaude Code使い" },
     { "username": "ampersand_xyz", "note": "日本のAIエンジニア" },
-    { "username": "ai_and_code", "note": "AI×コーディング情報" }
+    { "username": "ai_and_code", "note": "AI×コーディング情報" },
+    { "username": "masahirochaen", "note": "Claude Code関連発信者" },
+    { "username": "kandmybike", "note": "Claude Code関連発信者" }
   ],
   "keywords_hint": ["Claude Code", "claude code", "ClaudeCode", "クロードコード"]
 }

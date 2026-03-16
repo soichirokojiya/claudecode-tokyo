@@ -23,6 +23,7 @@ export interface Article {
   thumbnail?: string;
   summary?: string[];
   faq?: FAQ[];
+  author?: string;
   content: string;
   toc?: TocItem[];
   readingTime: number;
@@ -55,6 +56,7 @@ export function getAllArticles(): Omit<Article, "content">[] {
         thumbnail: data.thumbnail,
         summary: data.summary,
         faq: data.faq,
+        author: data.author || "ClaudeCode.Tokyo編集部",
         readingTime: calcReadingTime(content),
       };
     });
@@ -88,6 +90,7 @@ export async function getArticleBySlug(
     thumbnail: data.thumbnail,
     summary: data.summary,
     faq: data.faq,
+    author: data.author || "ClaudeCode.Tokyo編集部",
     content: contentHtml,
     toc,
     readingTime: calcReadingTime(content),

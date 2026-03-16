@@ -1,5 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <!-- Favicon A: Code bracket C -->
-  <rect width="32" height="32" rx="6" fill="#d97757"/>
-  <text x="16" y="23" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="700" fill="#faf9f5">&lt;C&gt;</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" shape-rendering="crispEdges">
+  <!-- Background -->
+  <rect width="32" height="32" fill="#d97757"/>
+  <!-- Pixel art <C> -->
+  <!-- < bracket -->
+  <rect x="4" y="8" width="3" height="3" fill="#faf9f5"/>
+  <rect x="7" y="11" width="3" height="3" fill="#faf9f5"/>
+  <rect x="4" y="14" width="3" height="3" fill="#faf9f5"/>
+  <!-- C letter -->
+  <rect x="13" y="8" width="9" height="3" fill="#faf9f5"/>
+  <rect x="10" y="11" width="3" height="10" fill="#faf9f5"/>
+  <rect x="13" y="18" width="9" height="3" fill="#faf9f5"/>
+  <!-- > bracket -->
+  <rect x="25" y="8" width="3" height="3" fill="#faf9f5"/>
+  <rect x="22" y="11" width="3" height="3" fill="#faf9f5"/>
+  <rect x="25" y="14" width="3" height="3" fill="#faf9f5"/>
 </svg>

@@ -1,23 +1,24 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Serif+Display:wght@400&display=swap');
 
 @theme inline {
-  --color-parchment-50: #fafaf5;
-  --color-parchment-100: #f5f5f0;
-  --color-parchment-200: #e5e5e0;
-  --color-parchment-300: #d6d3d1;
-  --color-parchment-400: #a8a29e;
-  --color-parchment-500: #78716c;
-  --color-parchment-600: #57534e;
-  --color-parchment-700: #44403c;
-  --color-parchment-900: #1c1917;
+  --color-parchment-50: #ffffff;
+  --color-parchment-100: #f7f7f5;
+  --color-parchment-200: #e8e8e4;
+  --color-parchment-300: #d4d4d0;
+  --color-parchment-400: #999994;
+  --color-parchment-500: #6b6b66;
+  --color-parchment-600: #333330;
+  --color-parchment-700: #222220;
+  --color-parchment-900: #111111;
 
-  --color-accent: #d97757;
-  --color-accent-dark: #c4643f;
+  --color-accent: #c41e3a;
+  --color-accent-dark: #a01830;
 
   --font-sans: 'Inter', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
   --font-editorial: 'Playfair Display', 'Noto Sans JP', Georgia, serif;
+  --font-masthead: 'DM Serif Display', 'Playfair Display', Georgia, serif;
 }
 
 html, body {
@@ -28,8 +29,8 @@ html, body {
 }
 
 ::selection {
-  color: inherit;
-  background-color: #e1dccf7c;
+  color: #fff;
+  background-color: var(--color-accent);
 }
 
 /* Article prose styles */
@@ -150,7 +151,7 @@ html, body {
 
 /* Summary Box */
 .summary-box {
-  background: linear-gradient(135deg, #fef7f3 0%, #fafaf5 100%);
+  background: linear-gradient(135deg, #fef7f3 0%, #ffffff 100%);
   border: 1px solid #f0d8ca;
   border-left: 4px solid var(--color-accent);
   border-radius: 12px;
@@ -185,4 +186,17 @@ html, body {
 
 .faq-item:first-child {
   padding-top: 0;
+}
+
+/* Newspaper-specific styles */
+.newspaper-rule {
+  border-top: 3px solid var(--color-parchment-900);
+}
+
+.newspaper-rule-thin {
+  border-top: 1px solid var(--color-parchment-900);
+}
+
+.newspaper-rule-double {
+  border-top: 3px double var(--color-parchment-900);
 }
