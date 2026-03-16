@@ -1,6 +1,6 @@
 ---
-title: "【海外ニュース】Claude Codeに「リモートコントロール」機能が登場 — スマホから作業を操作可能に"
-description: "Anthropic公式が発表した新機能。ターミナルで開始したタスクをスマホから監視・操作できるように。海外の反応もまとめて紹介。"
+title: "Claude Codeリモートコントロール機能の使い方【新機能】"
+description: "Claude Codeの新機能「リモートコントロール」を解説。ターミナルで開始した作業をスマホから監視・操作できます。"
 date: "2026-03-16"
 category: "news"
 tags: ["新機能", "海外ニュース", "Remote Control"]

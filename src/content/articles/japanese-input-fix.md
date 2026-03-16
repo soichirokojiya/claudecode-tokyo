@@ -1,6 +1,6 @@
 ---
-title: "Claude Codeの日本語入力問題を解決する7つの方法"
-description: "ターミナル版Claude Codeで日本語が入力しにくい問題の原因と、すぐに使える対策を7つ紹介します。"
+title: "Claude Code日本語入力できない？7つの解決方法まとめ"
+description: "Claude Codeで日本語が入力できない・文字化けする問題の原因と対処法を7つ紹介。Web版やVSCodeでの解決策も。"
 date: "2026-03-14"
 category: "tips"
 tags: ["日本語", "トラブルシューティング", "ターミナル"]

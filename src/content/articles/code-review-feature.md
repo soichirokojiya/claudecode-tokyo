@@ -1,6 +1,6 @@
 ---
-title: "Claude Codeのコードレビュー機能が登場 — 使い方と注意点"
-description: "2026年3月リリースのCode Review機能。複数のAIエージェントがPRを自動分析する新機能の使い方と、気になるコストについて解説。"
+title: "Claude Codeコードレビュー機能の使い方と料金【2026年3月】"
+description: "2026年3月リリースのCode Review機能を解説。複数AIエージェントによるPR自動分析の設定方法と料金を紹介。"
 date: "2026-03-13"
 category: "news"
 tags: ["Code Review", "新機能", "GitHub"]

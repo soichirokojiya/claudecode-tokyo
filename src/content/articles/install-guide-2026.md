@@ -1,6 +1,6 @@
 ---
-title: "Claude Codeのインストール方法【2026年最新版】Mac・Windows対応"
-description: "Claude Codeを今すぐ使い始めるためのインストール手順を、画面付きでステップごとに解説。Mac・Windows・Linux対応。"
+title: "Claude Codeのインストール方法【2026年最新】全OS対応"
+description: "Claude Codeのインストール手順をMac・Windows・Linux別にステップごとに解説。トラブルシューティングも網羅。"
 date: "2026-03-16"
 category: "getting-started"
 tags: ["インストール", "セットアップ", "初心者"]

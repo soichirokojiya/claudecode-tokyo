@@ -1,6 +1,6 @@
 ---
-title: "Claude Code Hooksとは？自動化ワークフローを作る方法"
-description: "Hooks機能を使えば、Claude Codeの動作を自動でカスタマイズできます。初心者でもわかるように基本から解説。"
+title: "Claude Code Hooksの使い方｜自動化ワークフロー入門"
+description: "Claude Code Hooksでコード保存時の自動フォーマットやコミット前チェックを設定する方法を初心者向けに解説。"
 date: "2026-03-12"
 category: "tips"
 tags: ["Hooks", "自動化", "ワークフロー"]

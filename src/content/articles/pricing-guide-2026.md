@@ -1,6 +1,6 @@
 ---
-title: "Claude Codeの料金プラン完全ガイド【2026年3月最新】"
-description: "Pro・Max・API従量課金の違いと、あなたに最適なプランの選び方をわかりやすく解説します。"
+title: "Claude Code料金プラン比較｜Pro・Max・APIの違い【2026年】"
+description: "Claude CodeのPro（月$20）・Max（月$100〜）・API従量課金の違いを比較。あなたに最適なプランの選び方を解説。"
 date: "2026-03-15"
 category: "pricing"
 tags: ["料金", "プラン", "コスト"]

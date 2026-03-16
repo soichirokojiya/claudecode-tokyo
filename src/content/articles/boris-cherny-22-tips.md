@@ -1,6 +1,6 @@
 ---
-title: "Claude Code創設者が教える22のTips【Boris Cherny氏のポストまとめ】"
-description: "Claude Codeの生みの親・Boris Cherny氏がXで公開した実践的な22のTipsを日本語で解説。公式が教える「正しい使い方」がわかります。"
+title: "Claude Code公式が教える22のTips【創設者直伝】"
+description: "Claude Code創設者Boris Cherny氏がXで公開した22のTipsを日本語で解説。公式が教える正しい使い方がわかります。"
 date: "2026-03-16"
 category: "tips"
 tags: ["Tips", "Boris Cherny", "公式", "X引用"]

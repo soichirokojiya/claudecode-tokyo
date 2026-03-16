@@ -1,6 +1,6 @@
 ---
-title: "Claude Codeを会社に導入するには？チーム導入の進め方ガイド"
-description: "個人利用から全社導入まで、Claude Codeをチームで使うためのステップとポイント。Gemcook社の実例も紹介。"
+title: "Claude Code企業導入ガイド｜チーム利用の始め方と事例"
+description: "Claude Codeの企業・チーム導入手順を解説。Team/Enterpriseプランの選び方、セキュリティ対策、導入事例も紹介。"
 date: "2026-03-12"
 category: "usecase"
 tags: ["企業導入", "チーム", "事例"]

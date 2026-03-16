@@ -1,6 +1,6 @@
 ---
-title: "CLAUDE.mdの書き方ガイド — AIに「うちのプロジェクト」を教える方法"
-description: "CLAUDE.mdファイルの作り方と書き方のコツ。これを設定するだけでClaude Codeの精度が劇的に向上します。"
+title: "CLAUDE.mdの書き方ガイド｜精度が上がる設定テンプレート付き"
+description: "CLAUDE.mdファイルの書き方を実例テンプレート付きで解説。設定するだけでClaude Codeの精度が劇的に向上します。"
 date: "2026-03-14"
 category: "tips"
 tags: ["CLAUDE.md", "設定", "ベストプラクティス"]

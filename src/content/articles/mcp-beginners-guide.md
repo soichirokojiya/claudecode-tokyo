@@ -1,6 +1,6 @@
 ---
-title: "MCP（Model Context Protocol）入門 — Claude Codeを外部ツールと連携する"
-description: "MCPを使えば、Claude CodeをSlack・GitHub・データベースなど外部サービスと接続できます。初心者向けに仕組みと使い方を解説。"
+title: "Claude Code MCP入門｜外部ツール連携の始め方"
+description: "MCPを使えばClaude CodeをSlack・GitHub・DBと連携可能。初心者向けに設定方法とおすすめサーバーを紹介。"
 date: "2026-03-11"
 category: "tips"
 tags: ["MCP", "連携", "外部ツール"]

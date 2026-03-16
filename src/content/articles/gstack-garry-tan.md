@@ -1,6 +1,6 @@
 ---
-title: "【海外トレンド】Y Combinator CEO Garry Tanが「gstack」をオープンソース公開"
-description: "Claude Codeを活用した開発ワークフローシステム「gstack」が話題。計画→レビュー→QA→出荷を自動化するフレームワーク。"
+title: "gstackとは？YC CEO発のClaude Code自動化フレームワーク"
+description: "Y Combinator CEO Garry Tanが公開したgstackを解説。Claude Codeで計画→レビュー→QA→出荷を自動化。"
 date: "2026-03-14"
 category: "news"
 tags: ["海外ニュース", "gstack", "オープンソース", "Y Combinator"]

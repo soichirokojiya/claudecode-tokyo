@@ -1,6 +1,6 @@
 ---
-title: "【速報】Claude Code、1Mトークンのコンテキストウィンドウがデフォルトに"
-description: "Opus 4.6で100万トークンのコンテキストウィンドウがMax/Team/Enterpriseプランのデフォルトに。何が変わるのか解説。"
+title: "Claude Code 100万トークン対応に｜何が変わるか解説"
+description: "Claude CodeのコンテキストウィンドウがOpus 4.6で100万トークンに拡大。対象プランと実務への影響を解説。"
 date: "2026-03-14"
 category: "news"
 tags: ["アップデート", "Opus 4.6", "海外ニュース"]

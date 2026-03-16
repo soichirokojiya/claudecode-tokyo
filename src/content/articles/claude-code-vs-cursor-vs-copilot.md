@@ -1,6 +1,6 @@
 ---
 title: "Claude Code vs Cursor vs Copilot 徹底比較【2026年版】"
-description: "AIコーディングツール3強を料金・機能・使いやすさで比較。あなたに合ったツールがわかります。"
+description: "Claude Code・Cursor・GitHub Copilotの料金・機能・使い勝手を比較表で解説。目的別のおすすめツールがわかります。"
 date: "2026-03-15"
 category: "comparison"
 tags: ["比較", "Cursor", "Copilot", "選び方"]

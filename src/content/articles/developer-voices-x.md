@@ -1,6 +1,6 @@
 ---
-title: "開発者たちのリアルな声 — X（Twitter）で話題のClaude Code投稿まとめ"
-description: "国内外の開発者がXで語るClaude Codeの本音。絶賛から不満まで、生の声をピックアップして紹介します。"
+title: "Claude Codeの評判は？開発者のリアルな声まとめ"
+description: "Xで話題のClaude Code投稿をまとめました。絶賛の声から不満点まで、国内外の開発者のリアルな本音を紹介。"
 date: "2026-03-15"
 category: "news"
 tags: ["X引用", "開発者の声", "SNS"]

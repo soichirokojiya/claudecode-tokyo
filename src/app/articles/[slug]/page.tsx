@@ -44,8 +44,31 @@ export default async function ArticlePage({ params }: Props) {
     .filter((a) => a.category === article.category && a.slug !== slug)
     .slice(0, 2);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    datePublished: article.date,
+    author: {
+      "@type": "Organization",
+      name: "ClaudeCode.Tokyo",
+      url: "https://claudecode.tokyo",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ClaudeCode.Tokyo",
+      url: "https://claudecode.tokyo",
+    },
+    mainEntityOfPage: `https://claudecode.tokyo/articles/${slug}`,
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-0 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb */}
       <nav className="mb-8 text-sm text-parchment-400 font-medium">
         <Link href="/" className="hover:text-parchment-900 transition-colors">

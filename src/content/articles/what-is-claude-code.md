@@ -1,6 +1,6 @@
 ---
-title: "Claude Codeとは？初心者向けにわかりやすく解説"
-description: "Anthropicが開発したAIコーディングツール「Claude Code」の基本を、プログラミング初心者にもわかる言葉で解説します。"
+title: "Claude Codeとは？機能・料金・始め方を初心者向けに解説"
+description: "Claude CodeはAnthropicが開発したAIコーディングツール。機能・料金・インストール方法を初心者にもわかる言葉で解説します。"
 date: "2026-03-16"
 category: "getting-started"
 tags: ["入門", "基礎知識", "初心者"]
