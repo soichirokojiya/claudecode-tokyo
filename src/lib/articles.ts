@@ -15,6 +15,7 @@ export interface Article {
   tags: string[];
   thumbnail?: string;
   content: string;
+  readingTime: number;
 }
 
 export function getAllArticles(): Omit<Article, "content">[] {
@@ -25,7 +26,7 @@ export function getAllArticles(): Omit<Article, "content">[] {
       const slug = fileName.replace(/\.md$/, "");
       const fullPath = path.join(articlesDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data } = matter(fileContents);
+      const { data, content } = matter(fileContents);
 
       return {
         slug,
@@ -35,6 +36,7 @@ export function getAllArticles(): Omit<Article, "content">[] {
         category: data.category,
         tags: data.tags || [],
         thumbnail: data.thumbnail,
+        readingTime: Math.ceil(content.length / 600),
       };
     });
 
@@ -64,6 +66,7 @@ export async function getArticleBySlug(
     tags: data.tags || [],
     thumbnail: data.thumbnail,
     content: contentHtml,
+    readingTime: Math.ceil(content.length / 600),
   };
 }
 
@@ -74,10 +77,14 @@ export function getArticlesByCategory(
 }
 
 export const CATEGORIES = [
-  { slug: "getting-started", name: "入門" },
-  { slug: "tips", name: "Tips" },
-  { slug: "news", name: "ニュース" },
-  { slug: "comparison", name: "比較" },
-  { slug: "usecase", name: "活用事例" },
-  { slug: "pricing", name: "料金" },
+  { slug: "getting-started", name: "入門", emoji: "🚀", color: "bg-blue-50 text-blue-600" },
+  { slug: "tips", name: "Tips", emoji: "💡", color: "bg-green-50 text-green-600" },
+  { slug: "news", name: "ニュース", emoji: "📰", color: "bg-purple-50 text-purple-600" },
+  { slug: "comparison", name: "比較", emoji: "⚖️", color: "bg-amber-50 text-amber-600" },
+  { slug: "usecase", name: "活用事例", emoji: "🎯", color: "bg-teal-50 text-teal-600" },
+  { slug: "pricing", name: "料金", emoji: "💰", color: "bg-rose-50 text-rose-600" },
 ] as const;
+
+export function getCategoryMeta(slug: string) {
+  return CATEGORIES.find((c) => c.slug === slug) || CATEGORIES[0];
+}

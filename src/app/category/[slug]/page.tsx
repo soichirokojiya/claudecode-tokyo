@@ -1,4 +1,4 @@
-import { getArticlesByCategory, CATEGORIES } from "@/lib/articles";
+import { getArticlesByCategory, CATEGORIES, getCategoryMeta } from "@/lib/articles";
 import ArticleCard from "@/components/ArticleCard";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CategoryPage({ params }: Props) {
   const { slug } = await params;
-  const category = CATEGORIES.find((c) => c.slug === slug);
-  if (!category) notFound();
+  const category = getCategoryMeta(slug);
+  if (!CATEGORIES.find((c) => c.slug === slug)) notFound();
 
   const articles = getArticlesByCategory(slug);
 
@@ -39,11 +39,12 @@ export default async function CategoryPage({ params }: Props) {
         <span>{category.name}</span>
       </nav>
 
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">
+      <h1 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <span>{category.emoji}</span>
         {category.name}
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {articles.map((article) => (
           <ArticleCard key={article.slug} {...article} />
         ))}
@@ -51,7 +52,7 @@ export default async function CategoryPage({ params }: Props) {
 
       {articles.length === 0 && (
         <p className="text-center text-gray-400 py-20">
-          この カテゴリの記事はまだありません
+          このカテゴリの記事はまだありません
         </p>
       )}
     </div>
