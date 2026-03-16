@@ -4,7 +4,7 @@ description: "New York Timesをはじめとする主要メディアが報じるA
 date: "2026-02-20"
 lastUpdated: "2026-03-16"
 category: "news"
-thumbnail: "https://images.unsplash.com/photo-1504711434969-e33886168d9c?w=800&h=500&fit=crop&q=80"
+thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=500&fit=crop&q=80"
 tags: ["海外ニュース", "NYT", "メディア分析", "AI革命"]
 summary:
   - "New York Timesが2026年初頭に「AIがソフトウェア開発を根本から変える」と大型特集を掲載"

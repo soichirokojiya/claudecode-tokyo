@@ -31,6 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.5,
     },
+    {
+      url: "https://claudecode.tokyo/sns",
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.6,
+    },
     ...articleUrls,
     ...categoryUrls,
   ];
