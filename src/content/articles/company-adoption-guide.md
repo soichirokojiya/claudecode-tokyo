@@ -4,7 +4,7 @@ description: "Claude Codeの企業・チーム導入手順を解説。Team/Enter
 date: "2026-03-12"
 lastUpdated: "2026-03-16"
 category: "usecase"
-thumbnail: "/images/articles/company.jpg"
+thumbnail: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop&q=80"
 tags: ["企業導入", "チーム", "事例"]
 summary:
   - "企業導入は個人試用→チーム試験導入→ガイドライン策定→Teamプラン移行→全社展開の5ステップで進める"

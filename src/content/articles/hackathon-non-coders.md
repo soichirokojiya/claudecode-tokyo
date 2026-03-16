@@ -4,7 +4,7 @@ description: "Anthropic主催ハッカソンで心臓外科医が優勝、参加
 date: "2026-03-16"
 lastUpdated: "2026-03-16"
 category: "usecase"
-thumbnail: "/images/articles/non-engineer.jpg"
+thumbnail: "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=800&h=500&fit=crop&q=80"
 tags: ["ハッカソン", "非エンジニア", "事例", "App Store", "アプリ開発"]
 author: "ClaudeCode.Tokyo編集部"
 summary:

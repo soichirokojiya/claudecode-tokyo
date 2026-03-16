@@ -4,7 +4,7 @@ description: "2026年3月リリースのCode Review機能を解説。複数AIエ
 date: "2026-03-13"
 lastUpdated: "2026-03-16"
 category: "news"
-thumbnail: "/images/articles/code-review.jpg"
+thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80"
 tags: ["Code Review", "新機能", "GitHub"]
 summary:
   - "Claude CodeのCode Review機能は複数AIエージェントがPRを並行分析し、バグ・脆弱性・エッジケースを自動検出する"

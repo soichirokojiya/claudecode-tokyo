@@ -4,7 +4,7 @@ description: "Claude Agent SDKを使ったAIエージェント開発の手順を
 date: "2026-03-16"
 lastUpdated: "2026-03-16"
 category: "tips"
-thumbnail: "/images/articles/mcp.jpg"
+thumbnail: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop&q=80"
 tags: ["Agent SDK", "開発", "MCP", "自動化"]
 author: "ClaudeCode.Tokyo編集部"
 summary:

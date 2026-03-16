@@ -4,7 +4,7 @@ description: "2026年1月〜3月のAnthropicの動きを総まとめ。Coworkモ
 date: "2026-03-16"
 lastUpdated: "2026-03-16"
 category: "news"
-thumbnail: "/images/articles/gstack.jpg"
+thumbnail: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&h=500&fit=crop&q=80"
 tags: ["Anthropic", "ニュース", "2026年", "アップデート"]
 author: "ClaudeCode.Tokyo編集部"
 summary:

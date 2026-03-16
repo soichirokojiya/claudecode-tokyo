@@ -4,7 +4,7 @@ description: "Claude Codeの並列サブエージェント機能を使い、9つ
 date: "2026-03-16"
 lastUpdated: "2026-03-16"
 category: "tips"
-thumbnail: "/images/articles/code-review.jpg"
+thumbnail: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop&q=80"
 tags: ["サブエージェント", "並列実行", "コードレビュー", "自動化", "エージェント"]
 author: "ClaudeCode.Tokyo編集部"
 summary:

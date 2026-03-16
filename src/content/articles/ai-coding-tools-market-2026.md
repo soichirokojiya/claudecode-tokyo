@@ -4,7 +4,7 @@ description: "2026年のAIコーディングツール市場を包括的に分析
 date: "2026-02-25"
 lastUpdated: "2026-03-16"
 category: "comparison"
-thumbnail: ""
+thumbnail: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop&q=80"
 tags: ["市場分析", "比較", "2026年", "業界動向"]
 summary:
   - "2026年のAIコーディングツール市場は$5.8B規模に成長し、5つのカテゴリに分類される"

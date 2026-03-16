@@ -4,7 +4,7 @@ description: "AppleがXcode 26.3にAnthropicのClaude Agent SDKを統合。iOS/m
 date: "2026-03-16"
 lastUpdated: "2026-03-16"
 category: "news"
-thumbnail: "/images/articles/company.jpg"
+thumbnail: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=500&fit=crop&q=80"
 tags: ["Apple", "Xcode", "iOS開発", "Claude Agent SDK", "ニュース"]
 author: "ClaudeCode.Tokyo編集部"
 summary:

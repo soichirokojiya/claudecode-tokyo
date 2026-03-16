@@ -4,7 +4,7 @@ description: "Claude Codeのカスタムスキル機能を徹底解説。SKILL.m
 date: "2026-03-16"
 lastUpdated: "2026-03-16"
 category: "tips"
-thumbnail: "/images/articles/hooks.jpg"
+thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=500&fit=crop&q=80"
 tags: ["カスタムスキル", "スラッシュコマンド", "SKILL.md", "カスタマイズ", "Tips"]
 author: "ClaudeCode.Tokyo編集部"
 summary:

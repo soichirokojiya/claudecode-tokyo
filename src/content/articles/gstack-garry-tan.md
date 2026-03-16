@@ -4,7 +4,7 @@ description: "Y Combinator CEO Garry Tanが公開したgstackを解説。Claude 
 date: "2026-03-14"
 lastUpdated: "2026-03-16"
 category: "news"
-thumbnail: "/images/articles/gstack.jpg"
+thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=500&fit=crop&q=80"
 tags: ["海外ニュース", "gstack", "オープンソース", "Y Combinator"]
 summary:
   - "Y Combinator CEO Garry Tan氏がClaude Codeベースの開発ワークフローシステム「gstack」をオープンソースで公開"

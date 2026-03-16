@@ -4,7 +4,7 @@ description: "Claude CodeのGitHub Actions連携を完全解説。claude-code-ac
 date: "2026-03-16"
 lastUpdated: "2026-03-16"
 category: "tips"
-thumbnail: "/images/articles/code-review.jpg"
+thumbnail: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=500&fit=crop&q=80"
 tags: ["GitHub Actions", "CI/CD", "自動化", "PR レビュー", "claude-code-action"]
 author: "ClaudeCode.Tokyo編集部"
 summary:

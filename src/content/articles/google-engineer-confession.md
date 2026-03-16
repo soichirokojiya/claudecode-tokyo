@@ -4,7 +4,7 @@ description: "元Googleエンジニアが「1年かけた仕事をClaude Codeが
 date: "2026-03-16"
 lastUpdated: "2026-03-16"
 category: "news"
-thumbnail: "/images/articles/developer-voices.jpg"
+thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=500&fit=crop&q=80"
 tags: ["Google", "エンジニア", "AI影響", "業界動向", "ニュース"]
 author: "ClaudeCode.Tokyo編集部"
 summary:

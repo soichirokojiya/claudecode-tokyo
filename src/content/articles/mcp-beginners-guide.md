@@ -4,7 +4,7 @@ description: "MCPを使えばClaude CodeをSlack・GitHub・DBと連携可能。
 date: "2026-03-11"
 lastUpdated: "2026-03-16"
 category: "tips"
-thumbnail: "/images/articles/mcp.jpg"
+thumbnail: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=500&fit=crop&q=80"
 tags: ["MCP", "連携", "外部ツール"]
 summary:
   - "MCP（Model Context Protocol）はClaude Codeと外部サービス（Slack・GitHub・DB・Notion等）を連携する標準規格"

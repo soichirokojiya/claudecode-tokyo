@@ -4,7 +4,7 @@ description: "Xで話題のClaude Code投稿をまとめました。絶賛の声
 date: "2026-03-15"
 lastUpdated: "2026-03-16"
 category: "news"
-thumbnail: "/images/articles/developer-voices.jpg"
+thumbnail: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=500&fit=crop&q=80"
 tags: ["X引用", "開発者の声", "SNS"]
 summary:
   - "開発者の46%がClaude Codeを最も好きなAIコーディングツールに選出"

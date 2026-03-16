@@ -4,7 +4,7 @@ description: "Claude Code創設者Boris Cherny氏がXで公開した22のTipsを
 date: "2026-03-16"
 lastUpdated: "2026-03-16"
 category: "tips"
-thumbnail: "/images/articles/boris-tips.jpg"
+thumbnail: "https://images.unsplash.com/photo-1493612276216-ee3925520721?w=800&h=500&fit=crop&q=80"
 tags: ["Tips", "Boris Cherny", "公式", "X引用"]
 summary:
   - "Claude Code創設者Boris Cherny氏が公開した22のTipsを日本語で完全解説"
