@@ -1,0 +1,61 @@
+name: Twitter Auto Post
+
+on:
+  # Run when pushing new articles
+  push:
+    paths:
+      - "src/content/articles/*.md"
+    branches:
+      - main
+  # Run 3x daily: 9:00, 13:00, 19:00 JST
+  schedule:
+    - cron: "0 0 * * *"
+    - cron: "0 4 * * *"
+    - cron: "0 10 * * *"
+  # Manual trigger
+  workflow_dispatch:
+
+jobs:
+  tweet-new-articles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Tweet new articles
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        run: npx tsx scripts/tweet-new-article.ts
+
+      - name: RT source tweets
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        run: npx tsx scripts/rt-sources.ts
+
+      - name: RT watched accounts
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        run: npx tsx scripts/rt-watch-accounts.ts
+
+      - name: Save posted/RT logs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add scripts/.posted-articles.json scripts/.retweeted-ids.json || true
+          git diff --cached --quiet || git commit -m "chore: update twitter post logs"
+          git push || true

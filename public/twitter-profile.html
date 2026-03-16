@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; }
+  body { width: 400px; height: 400px; background: #1a1a2e; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Courier New', monospace; overflow: hidden; position: relative; }
+  .star { position: absolute; width: 4px; height: 4px; background: white; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+  .pixel-claude { image-rendering: pixelated; }
+  .body { width: 96px; height: 96px; background: #d97757; position: relative; }
+  .head-top { width: 72px; height: 12px; background: #d97757; margin: 0 auto; }
+  .arm-l { position: absolute; left: -12px; top: 12px; width: 12px; height: 72px; background: #d97757; }
+  .arm-r { position: absolute; right: -12px; top: 12px; width: 12px; height: 72px; background: #d97757; }
+  .eye-l { position: absolute; left: 24px; top: 48px; width: 12px; height: 12px; background: #1a1a2e; }
+  .eye-r { position: absolute; right: 24px; top: 48px; width: 12px; height: 12px; background: #1a1a2e; }
+  .highlight1 { position: absolute; left: 12px; top: 12px; width: 24px; height: 12px; background: #e8956f; }
+  .highlight2 { position: absolute; left: 12px; top: 24px; width: 12px; height: 12px; background: #e8956f; }
+  .feet { display: flex; gap: 24px; }
+  .foot { width: 36px; height: 24px; background: #d97757; }
+  .name { color: white; font-size: 28px; font-weight: 900; margin-top: 24px; letter-spacing: 1px; }
+  .domain { color: #d97757; font-size: 22px; margin-top: 4px; }
+  .prompt { color: #4ade80; font-size: 11px; margin-top: 20px; opacity: 0.5; }
+</style>
+</head>
+<body>
+  <div class="star" style="top:30px;left:50px;opacity:0.3"></div>
+  <div class="star" style="top:60px;left:320px;opacity:0.2"></div>
+  <div class="star" style="top:80px;left:100px;opacity:0.15"></div>
+  <div class="star" style="top:50px;left:250px;opacity:0.25"></div>
+  <div class="star" style="top:320px;left:280px;opacity:0.2"></div>
+  <div class="star" style="top:300px;left:60px;opacity:0.15"></div>
+  <div class="star" style="top:340px;left:340px;opacity:0.25"></div>
+  <div class="star" style="top:350px;left:150px;opacity:0.1"></div>
+
+  <div class="pixel-claude">
+    <div class="head-top"></div>
+    <div class="body">
+      <div class="arm-l"></div>
+      <div class="arm-r"></div>
+      <div class="eye-l"></div>
+      <div class="eye-r"></div>
+      <div class="highlight1"></div>
+      <div class="highlight2"></div>
+    </div>
+    <div class="feet">
+      <div class="foot"></div>
+      <div class="foot"></div>
+    </div>
+  </div>
+  <div class="name">ClaudeCode</div>
+  <div class="domain">.Tokyo</div>
+  <div class="prompt">$ claude</div>
+</body>
+</html>

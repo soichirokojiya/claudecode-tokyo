@@ -1,0 +1,17 @@
+{
+  "description": "Claude Code関連の注目アカウント。ツイートを定期的にRTする。",
+  "accounts": [
+    { "username": "AnthropicAI", "note": "Anthropic公式" },
+    { "username": "claudeai", "note": "Claude公式" },
+    { "username": "bcherny", "note": "Claude Code創設者" },
+    { "username": "ClaudeCodeLog", "note": "Claude Code更新ログ" },
+    { "username": "Steve_Yegge", "note": "著名エンジニア、Claude Code支持者" },
+    { "username": "novy_jp", "note": "日本の開発者" },
+    { "username": "__sosukesuzuki", "note": "日本の開発者" },
+    { "username": "deaboritas", "note": "日本のAI系発信者" },
+    { "username": "and_and_and_and", "note": "日本のClaude Code使い" },
+    { "username": "ampersand_xyz", "note": "日本のAIエンジニア" },
+    { "username": "ai_and_code", "note": "AI×コーディング情報" }
+  ],
+  "keywords_hint": ["Claude Code", "claude code", "ClaudeCode", "クロードコード"]
+}
