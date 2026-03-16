@@ -1,19 +1,69 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+declare global {
+  interface Window {
+    twttr?: {
+      widgets: {
+        load: (el?: HTMLElement) => void;
+        createTimeline: (
+          source: { sourceType: string; screenName: string },
+          el: HTMLElement,
+          options?: Record<string, unknown>
+        ) => Promise<HTMLElement>;
+      };
+    };
+  }
+}
 
 export default function NewsletterCTA() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current) return;
-    // Load Twitter embed script
+    if (loaded || !containerRef.current) return;
+
+    const renderTimeline = () => {
+      if (!window.twttr || !containerRef.current) return;
+      // Clear fallback text
+      containerRef.current.innerHTML = "";
+      window.twttr.widgets.createTimeline(
+        { sourceType: "profile", screenName: "claudecodetokyo" },
+        containerRef.current,
+        {
+          height: 500,
+          theme: "light",
+          chrome: "noheader nofooter noborders transparent",
+          lang: "ja",
+          dnt: true,
+        }
+      );
+      setLoaded(true);
+    };
+
+    // Check if script already loaded
+    if (window.twttr?.widgets) {
+      renderTimeline();
+      return;
+    }
+
     const script = document.createElement("script");
     script.src = "https://platform.twitter.com/widgets.js";
     script.async = true;
-    script.charset = "utf-8";
-    containerRef.current.appendChild(script);
-  }, []);
+    script.onload = () => {
+      // widgets.js sets up twttr asynchronously
+      const check = setInterval(() => {
+        if (window.twttr?.widgets) {
+          clearInterval(check);
+          renderTimeline();
+        }
+      }, 100);
+      // Safety timeout
+      setTimeout(() => clearInterval(check), 5000);
+    };
+    document.head.appendChild(script);
+  }, [loaded]);
 
   return (
     <section className="mb-16">
@@ -27,17 +77,8 @@ export default function NewsletterCTA() {
         </p>
       </div>
 
-      <div ref={containerRef} className="max-w-lg mx-auto">
-        <a
-          className="twitter-timeline"
-          data-height="500"
-          data-theme="light"
-          data-chrome="noheader nofooter noborders transparent"
-          data-lang="ja"
-          href="https://twitter.com/claudecodetokyo"
-        >
-          @claudecodetokyo のツイート
-        </a>
+      <div ref={containerRef} className="max-w-lg mx-auto min-h-[200px] flex items-center justify-center">
+        <p className="text-neutral-400 text-sm">タイムラインを読み込み中...</p>
       </div>
 
       {/* Follow CTA */}
