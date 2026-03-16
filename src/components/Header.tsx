@@ -19,8 +19,28 @@ export default function Header() {
       <div className="h-[1px] bg-parchment-50" />
       <div className="h-px bg-parchment-900" />
 
-      {/* Date bar & Edition label */}
-      <div className="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between text-[11px] text-parchment-500">
+      {/* Masthead */}
+      <div className="py-5 sm:py-7 text-center">
+        <Link href="/" className="inline-block">
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <PixelClaude size={32} />
+          </div>
+          <h1 className="text-5xl sm:text-7xl font-masthead font-normal tracking-tight text-parchment-900" style={{ fontFamily: "'DM Serif Display', 'Playfair Display', Georgia, serif" }}>
+            ClaudeCode<span className="text-accent">.Tokyo</span>
+          </h1>
+          <p className="text-[10px] tracking-[0.4em] uppercase text-parchment-400 mt-2 font-sans font-medium">
+            The Definitive Source for Claude Code &mdash; AI時代のコード新聞
+          </p>
+        </Link>
+      </div>
+
+      {/* Double rule before date + nav */}
+      <div className="h-[3px] bg-parchment-900" />
+      <div className="h-[2px] bg-parchment-50" />
+      <div className="h-px bg-parchment-900" />
+
+      {/* Date bar & Edition label - just above nav */}
+      <div className="max-w-6xl mx-auto px-4 py-1.5 flex items-center justify-between text-[11px] text-parchment-500">
         <div className="flex items-center gap-4">
           <span className="font-sans font-medium tracking-[0.08em] uppercase">{dateStr}</span>
           <span className="text-parchment-300">|</span>
@@ -50,59 +70,23 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="h-px bg-parchment-200" />
-
-      {/* Masthead */}
-      <div className="py-5 sm:py-7 text-center">
-        <Link href="/" className="inline-block">
-          <div className="flex items-center justify-center gap-2 mb-1">
-            <PixelClaude size={32} />
-          </div>
-          <h1 className="text-5xl sm:text-7xl font-masthead font-normal tracking-tight text-parchment-900" style={{ fontFamily: "'DM Serif Display', 'Playfair Display', Georgia, serif" }}>
-            ClaudeCode<span className="text-accent">.Tokyo</span>
-          </h1>
-          <p className="text-[10px] tracking-[0.4em] uppercase text-parchment-400 mt-2 font-sans font-medium">
-            The Definitive Source for Claude Code &mdash; AI&#x6642;&#x4EE3;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x65B0;&#x805E;
-          </p>
-        </Link>
-      </div>
-
-      {/* Double rule before nav */}
-      <div className="h-[3px] bg-parchment-900" />
-      <div className="h-[2px] bg-parchment-50" />
-      <div className="h-px bg-parchment-900" />
-
       {/* Navigation - newspaper section tabs */}
       <div className="sticky top-0 z-50 bg-parchment-50/95 backdrop-blur-sm">
+        <div className="h-px bg-parchment-300" />
         <nav className="max-w-6xl mx-auto px-4 flex items-center justify-center gap-0">
-          <Link
-            href="/"
-            className="px-5 py-3 text-[11px] text-parchment-700 hover:text-accent tracking-[0.15em] uppercase font-sans font-semibold transition-all whitespace-nowrap border-b-2 border-transparent hover:border-accent"
-          >
+          <Link href="/" className="px-5 py-3 text-[11px] text-parchment-700 hover:text-accent tracking-[0.15em] uppercase font-sans font-semibold transition-all whitespace-nowrap border-b-2 border-transparent hover:border-accent">
             Home
           </Link>
-          <Link
-            href="/category/getting-started"
-            className="px-5 py-3 text-[11px] text-parchment-700 hover:text-accent tracking-[0.15em] uppercase font-sans font-semibold transition-all whitespace-nowrap border-b-2 border-transparent hover:border-accent"
-          >
+          <Link href="/category/getting-started" className="px-5 py-3 text-[11px] text-parchment-700 hover:text-accent tracking-[0.15em] uppercase font-sans font-semibold transition-all whitespace-nowrap border-b-2 border-transparent hover:border-accent">
             ClaudeCode入門
           </Link>
-          <Link
-            href="/category/tips"
-            className="px-5 py-3 text-[11px] text-parchment-700 hover:text-accent tracking-[0.15em] uppercase font-sans font-semibold transition-all whitespace-nowrap border-b-2 border-transparent hover:border-accent"
-          >
+          <Link href="/category/tips" className="px-5 py-3 text-[11px] text-parchment-700 hover:text-accent tracking-[0.15em] uppercase font-sans font-semibold transition-all whitespace-nowrap border-b-2 border-transparent hover:border-accent">
             Tips
           </Link>
-          <Link
-            href="/category/news"
-            className="px-5 py-3 text-[11px] text-parchment-700 hover:text-accent tracking-[0.15em] uppercase font-sans font-semibold transition-all whitespace-nowrap border-b-2 border-transparent hover:border-accent"
-          >
+          <Link href="/category/news" className="px-5 py-3 text-[11px] text-parchment-700 hover:text-accent tracking-[0.15em] uppercase font-sans font-semibold transition-all whitespace-nowrap border-b-2 border-transparent hover:border-accent">
             ニュース
           </Link>
-          <Link
-            href="/sns"
-            className="px-5 py-3 text-[11px] text-parchment-700 hover:text-accent tracking-[0.15em] uppercase font-sans font-semibold transition-all whitespace-nowrap border-b-2 border-transparent hover:border-accent"
-          >
+          <Link href="/sns" className="px-5 py-3 text-[11px] text-parchment-700 hover:text-accent tracking-[0.15em] uppercase font-sans font-semibold transition-all whitespace-nowrap border-b-2 border-transparent hover:border-accent">
             SNS
           </Link>
         </nav>

@@ -1,8 +1,22 @@
 import { getAllArticles, getCategoryMeta } from "@/lib/articles";
+import { getArticleVisual } from "@/lib/categoryVisuals";
 import { PixelClaude } from "@/components/PixelClaude";
+import ArticleVisual from "@/components/ArticleVisual";
 import NewsletterCTA from "@/components/NewsletterCTA";
 import Link from "next/link";
 import Image from "next/image";
+
+// Track used thumbnails to avoid duplicates on the same page
+function deduplicateThumbnails<T extends { slug: string; thumbnail?: string; category: string }>(articles: T[]) {
+  const used = new Set<string>();
+  return articles.map((a) => {
+    if (a.thumbnail && !used.has(a.thumbnail)) {
+      used.add(a.thumbnail);
+      return { ...a, uniqueThumbnail: a.thumbnail };
+    }
+    return { ...a, uniqueThumbnail: "" };
+  });
+}
 
 function ColumnRule() {
   return <div className="hidden lg:block w-px bg-parchment-300 self-stretch" />;
@@ -36,8 +50,26 @@ function ArticleDate({ date }: { date: string }) {
   return <time className="text-[11px] text-parchment-400 font-sans block mt-1">{date}</time>;
 }
 
+function ArticleThumbnail({ slug, category, thumbnail, sizes, priority = false }: { slug: string; category: string; thumbnail: string; sizes: string; priority?: boolean }) {
+  if (thumbnail) {
+    return (
+      <Image
+        src={thumbnail}
+        alt=""
+        fill
+        className="object-cover group-hover:scale-105 transition-transform duration-500"
+        sizes={sizes}
+        priority={priority}
+      />
+    );
+  }
+  const visual = getArticleVisual(slug, category);
+  return <ArticleVisual category={category} size="fill" slugVisual={visual} />;
+}
+
 export default function Home() {
-  const articles = getAllArticles();
+  const rawArticles = getAllArticles();
+  const articles = deduplicateThumbnails(rawArticles);
   const featured = articles[0];
   const secondary = articles.slice(1, 3);
   const sidebar = articles.slice(3, 7);
@@ -57,17 +89,7 @@ export default function Home() {
               return (
                 <Link key={article.slug} href={`/articles/${article.slug}`} className="group block mb-6">
                   <div className="relative aspect-[4/3] overflow-hidden bg-parchment-100">
-                    {article.thumbnail ? (
-                      <Image
-                        src={article.thumbnail}
-                        alt={article.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 1024px) 100vw, 25vw"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-parchment-200 to-parchment-100" />
-                    )}
+                    <ArticleThumbnail slug={article.slug} category={article.category} thumbnail={article.uniqueThumbnail} sizes="(max-width: 1024px) 100vw, 25vw" />
                   </div>
                   <div className="mt-2">
                     <ArticleLabel>{cat.name}</ArticleLabel>
@@ -92,18 +114,7 @@ export default function Home() {
                   <ArticleLabel variant="featured">Featured</ArticleLabel>
                 </div>
                 <div className="relative aspect-[16/10] overflow-hidden bg-parchment-100">
-                  {featured.thumbnail ? (
-                    <Image
-                      src={featured.thumbnail}
-                      alt={featured.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      priority
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-parchment-300 to-parchment-100" />
-                  )}
+                  <ArticleThumbnail slug={featured.slug} category={featured.category} thumbnail={featured.uniqueThumbnail} sizes="(max-width: 1024px) 100vw, 50vw" priority />
                 </div>
                 <div className="mt-4">
                   <span className="text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-accent">
@@ -168,17 +179,7 @@ export default function Home() {
               return (
                 <Link key={article.slug} href={`/articles/${article.slug}`} className="group block">
                   <div className="relative aspect-[16/10] overflow-hidden bg-parchment-100">
-                    {article.thumbnail ? (
-                      <Image
-                        src={article.thumbnail}
-                        alt={article.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-parchment-200 to-parchment-100" />
-                    )}
+                    <ArticleThumbnail slug={article.slug} category={article.category} thumbnail={article.uniqueThumbnail} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
                   </div>
                   <div className="mt-3">
                     <ArticleLabel variant={labelVariant}>{labelText}</ArticleLabel>

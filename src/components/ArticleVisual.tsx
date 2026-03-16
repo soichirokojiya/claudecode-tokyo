@@ -1,5 +1,7 @@
 import { CATEGORY_VISUALS } from "@/lib/categoryVisuals";
 
+let patternCounter = 0;
+
 const PATTERNS: Record<string, string> = {
   circles: `<circle cx="20" cy="20" r="8" fill="white" opacity="0.06"/><circle cx="60" cy="40" r="12" fill="white" opacity="0.04"/><circle cx="40" cy="70" r="6" fill="white" opacity="0.08"/><circle cx="80" cy="10" r="10" fill="white" opacity="0.05"/><circle cx="10" cy="50" r="4" fill="white" opacity="0.07"/>`,
   dots: `<circle cx="10" cy="10" r="2" fill="white" opacity="0.1"/><circle cx="30" cy="10" r="2" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="2" fill="white" opacity="0.1"/><circle cx="70" cy="10" r="2" fill="white" opacity="0.1"/><circle cx="90" cy="10" r="2" fill="white" opacity="0.1"/><circle cx="20" cy="30" r="2" fill="white" opacity="0.1"/><circle cx="40" cy="30" r="2" fill="white" opacity="0.1"/><circle cx="60" cy="30" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="30" r="2" fill="white" opacity="0.1"/>`,
@@ -10,13 +12,14 @@ const PATTERNS: Record<string, string> = {
 
 interface Props {
   category: string;
-  size?: "sm" | "md" | "lg" | "hero";
+  size?: "sm" | "md" | "lg" | "hero" | "fill";
   title?: string;
   showOverlay?: boolean;
+  slugVisual?: { gradient: string; icon: string; pattern: string };
 }
 
-export default function ArticleVisual({ category, size = "md", title, showOverlay = false }: Props) {
-  const visual = CATEGORY_VISUALS[category] || CATEGORY_VISUALS["news"];
+export default function ArticleVisual({ category, size = "md", title, showOverlay = false, slugVisual }: Props) {
+  const visual = slugVisual || CATEGORY_VISUALS[category] || CATEGORY_VISUALS["news"];
   const pattern = PATTERNS[visual.pattern] || PATTERNS["dots"];
 
   const heights: Record<string, string> = {
@@ -24,6 +27,7 @@ export default function ArticleVisual({ category, size = "md", title, showOverla
     md: "h-48",
     lg: "h-80 sm:h-[420px]",
     hero: "h-64 sm:h-80",
+    fill: "absolute inset-0 w-full h-full",
   };
 
   const iconSizes: Record<string, string> = {
@@ -31,6 +35,7 @@ export default function ArticleVisual({ category, size = "md", title, showOverla
     md: "w-16 h-16",
     lg: "w-24 h-24",
     hero: "w-20 h-20",
+    fill: "w-12 h-12",
   };
 
   const svgSizes: Record<string, string> = {
@@ -38,6 +43,7 @@ export default function ArticleVisual({ category, size = "md", title, showOverla
     md: "w-7 h-7",
     lg: "w-10 h-10",
     hero: "w-9 h-9",
+    fill: "w-6 h-6",
   };
 
   return (
@@ -47,12 +53,12 @@ export default function ArticleVisual({ category, size = "md", title, showOverla
 
       {/* Pattern */}
       <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-        <defs>
-          <pattern id={`pat-${category}-${size}`} patternUnits="userSpaceOnUse" width="100" height="100">
+        {(() => { const pid = `pat-${category}-${++patternCounter}`; return (<><defs>
+          <pattern id={pid} patternUnits="userSpaceOnUse" width="100" height="100">
             <g dangerouslySetInnerHTML={{ __html: pattern }} />
           </pattern>
         </defs>
-        <rect width="100" height="100" fill={`url(#pat-${category}-${size})`} />
+        <rect width="100" height="100" fill={`url(#${pid})`} /></>); })()}
       </svg>
 
       {/* Decorative shapes */}

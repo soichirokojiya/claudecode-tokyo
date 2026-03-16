@@ -104,9 +104,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom line */}
-        <div className="border-t border-parchment-700 mt-10 pt-6 flex items-center justify-between">
+        <div className="border-t border-parchment-700 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs font-sans">
             &copy; {new Date().getFullYear()} ClaudeCode.Tokyo
+          </p>
+          <p className="text-xs text-parchment-400/60 font-sans">
+            運営：<a href="https://commonfuture.co.jp" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Common Future &amp; Co. 株式会社</a>
           </p>
           <p className="text-xs text-parchment-400/40 font-sans">
             Powered by Claude Code

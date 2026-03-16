@@ -246,6 +246,32 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         )}
 
+        {/* Author Bio */}
+        <div className="mt-10 pt-8 border-t border-parchment-200">
+          <div className="flex items-start gap-4 bg-parchment-100 rounded-xl p-6">
+            <div className="w-12 h-12 rounded-full bg-accent/15 flex items-center justify-center shrink-0">
+              <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-xs text-parchment-400 uppercase tracking-wider mb-1">Written by</p>
+              <p className="text-base font-bold text-parchment-900">{article.author || "ClaudeCode.Tokyo編集部"}</p>
+              <p className="text-sm text-parchment-500 mt-1 leading-relaxed">
+                Claude Code専門メディア「ClaudeCode.Tokyo」の編集部です。AI×開発の最新情報を、初心者にもわかりやすくお届けします。
+              </p>
+              <div className="flex items-center gap-3 mt-3">
+                <a href="https://x.com/claudecodetokyo" target="_blank" rel="noopener noreferrer" className="text-parchment-400 hover:text-accent transition-colors">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </a>
+                <a href="https://claudecode.tokyo" className="text-xs text-accent hover:underline">claudecode.tokyo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Share */}
         <div className="mt-8 pt-8 border-t border-parchment-200">
           <ShareButtons title={article.title} slug={slug} />
