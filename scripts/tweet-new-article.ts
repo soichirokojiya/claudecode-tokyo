@@ -53,25 +53,114 @@ function extractTweetIds(slug: string): string[] {
   return ids;
 }
 
+// Category-based hooks and emojis
+const CATEGORY_HOOKS: Record<string, { emoji: string; hooks: string[] }> = {
+  news: {
+    emoji: "🚀",
+    hooks: [
+      "【速報】",
+      "【最新ニュース】",
+      "見逃せない最新動向👇",
+      "業界が動いています",
+    ],
+  },
+  tips: {
+    emoji: "💡",
+    hooks: [
+      "知ってると差がつく！",
+      "プロはこう使う👇",
+      "開発効率が爆上がりする方法",
+      "これ知ってましたか？",
+    ],
+  },
+  usecase: {
+    emoji: "🛠️",
+    hooks: [
+      "実際に使ってみた結果…",
+      "こんな使い方もできる！",
+      "現場で使える実践テク👇",
+      "ここまでできるのか…",
+    ],
+  },
+  comparison: {
+    emoji: "⚔️",
+    hooks: [
+      "徹底比較してみました",
+      "結局どれが最強？",
+      "選び方で迷ってる人へ👇",
+      "ガチ比較した結果…",
+    ],
+  },
+  "getting-started": {
+    emoji: "🎯",
+    hooks: [
+      "はじめの一歩はここから",
+      "5分で始められます👇",
+      "今日から使える入門ガイド",
+      "初心者でも大丈夫！",
+    ],
+  },
+  pricing: {
+    emoji: "💰",
+    hooks: [
+      "料金、ちゃんと把握してる？",
+      "コスパ最強の使い方とは",
+      "無駄に課金してない？👇",
+      "お得に使う方法を解説",
+    ],
+  },
+};
+
+// Build hashtags from article tags
+function buildHashtags(tags?: string[]): string {
+  const base = ["#ClaudeCode"];
+  if (tags) {
+    for (const tag of tags.slice(0, 3)) {
+      const clean = tag.replace(/\s+/g, "").replace(/[^a-zA-Z0-9\u3000-\u9FFF]/g, "");
+      if (clean && !base.includes(`#${clean}`)) {
+        base.push(`#${clean}`);
+      }
+    }
+  }
+  if (base.length < 3) base.push("#AI");
+  return base.join(" ");
+}
+
+// Pick a random hook for the category
+function pickHook(category: string): { emoji: string; hook: string } {
+  const cat = CATEGORY_HOOKS[category] || CATEGORY_HOOKS.news;
+  const hook = cat.hooks[Math.floor(Math.random() * cat.hooks.length)];
+  return { emoji: cat.emoji, hook };
+}
+
 // Build tweet text for an article
-function buildTweetText(article: { title?: string; slug: string; summary?: string[]; tags?: string[] }): string {
+function buildTweetText(article: {
+  title?: string;
+  slug: string;
+  summary?: string[];
+  tags?: string[];
+  category?: string;
+}): string {
   const title = article.title || article.slug;
   const url = `${SITE_URL}/articles/${article.slug}`;
-  const summary = article.summary?.[0] || "";
-  const tags = "#ClaudeCode #AI #プログラミング";
+  const { emoji, hook } = pickHook(article.category || "news");
+  const hashtags = buildHashtags(article.tags);
 
-  let text = `📝 ${title}\n\n`;
+  // Primary format: hook + title + summary + url + tags
+  const summary = article.summary?.[0] || "";
+  let text = `${emoji} ${hook}\n\n${title}\n\n`;
   if (summary) {
     text += `${summary}\n\n`;
   }
-  text += `${url}\n\n${tags}`;
+  text += `${url}\n\n${hashtags}`;
 
-  // Twitter limit: 280 chars
+  // Fallback: no summary
   if (text.length > 280) {
-    text = `📝 ${title}\n\n${url}\n\n${tags}`;
+    text = `${emoji} ${hook}\n\n${title}\n\n${url}\n\n${hashtags}`;
   }
+  // Fallback: minimal
   if (text.length > 280) {
-    text = `${title}\n${url}\n${tags}`;
+    text = `${emoji} ${title}\n\n${url}\n\n${hashtags}`;
   }
   return text;
 }
@@ -94,7 +183,7 @@ async function main() {
   for (const article of toPost) {
     try {
       // 1. Tweet the article
-      const text = buildTweetText(article as { title?: string; slug: string; summary?: string[]; tags?: string[] });
+      const text = buildTweetText(article as { title?: string; slug: string; summary?: string[]; tags?: string[]; category?: string });
       const { data } = await client.v2.tweet(text);
       console.log(`Tweeted: ${article.slug} (id: ${data.id})`);
 
