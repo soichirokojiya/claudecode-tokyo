@@ -1,15 +1,17 @@
 import Link from "next/link";
 import { CATEGORIES } from "@/lib/articles";
+import { PixelClaude } from "./PixelClaude";
 
 export default function Header() {
   return (
     <header className="bg-white">
       {/* Top bar - dark like Claude Code terminal */}
-      <div className="bg-parchment-900 text-parchment-400">
+      <div className="bg-[#1a1a2e] text-parchment-400">
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-9">
           <div className="flex items-center gap-3 text-xs">
-            <span className="text-accent font-mono text-[11px]">
-              <span className="text-emerald-400">$</span> claude --version
+            <span className="font-mono text-[11px]">
+              <span className="text-emerald-400">$</span>
+              <span className="text-parchment-400/60"> claude</span>
             </span>
           </div>
           <div className="flex items-center gap-4 text-xs">
@@ -37,31 +39,22 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Logo Section with Claude Code branding */}
-      <div className="py-8 text-center border-b border-parchment-200 relative overflow-hidden">
-        {/* Subtle terminal-like background pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 24px, #1c1917 24px, #1c1917 25px)`,
-        }} />
-        <Link href="/" className="inline-block relative">
-          <div className="flex items-center justify-center gap-3">
-            {/* Claude Code bracket logo */}
-            <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center shadow-lg shadow-accent/20">
-              <span className="text-white font-mono font-bold text-xl">&lt;C&gt;</span>
-            </div>
-            <div>
-              <h1 className="text-3xl sm:text-4xl font-editorial tracking-tight text-parchment-900">
-                ClaudeCode<span className="text-accent">.Tokyo</span>
-              </h1>
-              <p className="text-[11px] tracking-[0.3em] uppercase text-parchment-400 mt-0.5">
-                Claude Code 専門メディア
-              </p>
-            </div>
+      {/* Logo Section */}
+      <div className="py-6 text-center border-b border-parchment-200">
+        <Link href="/" className="inline-flex items-center gap-3">
+          <PixelClaude size={44} />
+          <div className="text-left">
+            <h1 className="text-3xl sm:text-4xl font-editorial tracking-tight text-parchment-900">
+              ClaudeCode<span className="text-accent">.Tokyo</span>
+            </h1>
+            <p className="text-[10px] tracking-[0.25em] uppercase text-parchment-400 font-mono">
+              Claude Code 専門メディア
+            </p>
           </div>
         </Link>
       </div>
 
-      {/* Navigation - styled like terminal tabs */}
+      {/* Navigation */}
       <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-parchment-200">
         <nav className="max-w-6xl mx-auto px-4 flex items-center justify-center gap-0.5 overflow-x-auto scrollbar-none">
           <Link

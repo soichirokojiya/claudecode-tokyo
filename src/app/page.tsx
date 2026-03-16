@@ -1,4 +1,5 @@
 import { getAllArticles, getCategoryMeta } from "@/lib/articles";
+import { PixelClaude, PixelStar, PixelCloud, PixelMoon } from "@/components/PixelClaude";
 import NewsletterCTA from "@/components/NewsletterCTA";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +13,56 @@ export default function Home() {
 
   return (
     <>
+      {/* Hero - Claude Code Terminal Style */}
+      <section className="relative bg-[#1a1a2e] overflow-hidden">
+        <div className="absolute inset-0">
+          {/* Stars */}
+          <PixelStar className="absolute top-8 left-[10%] text-white/40" />
+          <PixelStar className="absolute top-16 left-[25%] text-white/20" />
+          <PixelStar className="absolute top-6 left-[45%] text-white/50" />
+          <PixelStar className="absolute top-20 left-[60%] text-white/30" />
+          <PixelStar className="absolute top-10 left-[75%] text-white/40" />
+          <PixelStar className="absolute top-24 left-[85%] text-white/20" />
+          <PixelStar className="absolute top-4 left-[90%] text-white/50" />
+          <PixelStar className="absolute top-28 left-[15%] text-white/30" />
+          <PixelStar className="absolute top-14 left-[55%] text-white/40" />
+          <PixelStar className="absolute top-22 left-[35%] text-white/20" />
+
+          {/* Clouds */}
+          <PixelCloud className="absolute top-6 left-[5%] text-white" />
+          <PixelCloud className="absolute top-16 right-[15%] text-white" />
+
+          {/* Moon */}
+          <PixelMoon className="absolute top-4 right-[25%]" />
+
+          {/* Ground line */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-parchment-400/30" />
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-t from-parchment-400/10 to-transparent" />
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4 py-12 sm:py-16 flex items-end gap-6">
+          <div className="hidden sm:block flex-shrink-0 mb-1">
+            <PixelClaude size={64} />
+          </div>
+          <div>
+            <p className="font-mono text-parchment-400/60 text-xs mb-2">
+              Welcome to ClaudeCode.Tokyo v1.0.0
+            </p>
+            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              Claude Code の最新情報を、
+              <span className="text-accent">わかりやすく</span>
+            </h2>
+            <p className="text-parchment-400 text-sm mt-2 max-w-lg leading-relaxed">
+              使い方・Tips・海外ニュース・比較・活用事例をお届けするClaude Code専門メディア
+            </p>
+            <p className="font-mono text-emerald-400/70 text-xs mt-4">
+              <span className="text-parchment-400/40">$</span> Let&apos;s get started.
+              <span className="animate-pulse">_</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Trending Bar */}
       <div className="border-b border-parchment-200 bg-white">
         <div className="max-w-6xl mx-auto px-4 py-2.5 flex items-center gap-4 overflow-hidden">
@@ -140,9 +191,13 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Divider */}
+      {/* Pixel divider */}
       <div className="max-w-6xl mx-auto px-4">
-        <div className="h-px bg-parchment-900" />
+        <div className="flex items-center gap-3">
+          <div className="flex-1 h-px bg-parchment-900" />
+          <PixelClaude size={24} />
+          <div className="flex-1 h-px bg-parchment-900" />
+        </div>
       </div>
 
       {/* More Articles Grid */}
