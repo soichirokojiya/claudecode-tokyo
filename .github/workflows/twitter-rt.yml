@@ -1,22 +1,14 @@
-name: Twitter Auto Post
+name: Twitter Auto RT
 
 on:
-  # Run when pushing new articles
-  push:
-    paths:
-      - "src/content/articles/*.md"
-    branches:
-      - main
-  # Run 3x daily: 9:00, 13:00, 19:00 JST
+  # Run every 2 hours
   schedule:
-    - cron: "0 0 * * *"
-    - cron: "0 4 * * *"
-    - cron: "0 10 * * *"
+    - cron: "30 */2 * * *"
   # Manual trigger
   workflow_dispatch:
 
 jobs:
-  tweet-new-articles:
+  rt-watched-accounts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,19 +20,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Tweet new articles
+      - name: RT watched accounts
         env:
           TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
           TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-        run: npx tsx scripts/tweet-new-article.ts
+        run: npx tsx scripts/rt-watch-accounts.ts
 
-      - name: Save posted logs
+      - name: RT source tweets from articles
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        run: npx tsx scripts/rt-sources.ts
+
+      - name: Save RT logs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase || true
-          git add scripts/.posted-articles.json || true
-          git diff --cached --quiet || git commit -m "chore: update twitter post logs"
+          git add scripts/.retweeted-ids.json || true
+          git diff --cached --quiet || git commit -m "chore: update RT logs"
           git push || true

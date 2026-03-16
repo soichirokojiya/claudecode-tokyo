@@ -12,7 +12,32 @@ const client = new TwitterApi({
   accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET!,
 });
 
-const KEYWORDS = ["claude code", "claudecode", "クロードコード"];
+const KEYWORDS = [
+  // Claude Code
+  "claude code",
+  "claudecode",
+  "クロードコード",
+  // Open Claw / OpenClaw
+  "open claw",
+  "openclaw",
+  "オープンクロー",
+  // Related AI agents & tools
+  "claude agent",
+  "claude mcp",
+  "anthropic mcp",
+  "model context protocol",
+  "agentic coding",
+  "ai coding agent",
+  "AIコーディング",
+  "AIエージェント開発",
+  // Competitor awareness
+  "github copilot agent",
+  "cursor agent",
+  "windsurf",
+  "cline",
+  "aider",
+  "codex cli",
+];
 
 function getRetweetedIds(): string[] {
   if (fs.existsSync(RT_LOG_FILE)) {
