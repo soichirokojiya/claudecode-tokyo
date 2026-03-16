@@ -2,8 +2,23 @@
 title: "Claude Codeコードレビュー機能の使い方と料金【2026年3月】"
 description: "2026年3月リリースのCode Review機能を解説。複数AIエージェントによるPR自動分析の設定方法と料金を紹介。"
 date: "2026-03-13"
+lastUpdated: "2026-03-16"
 category: "news"
 tags: ["Code Review", "新機能", "GitHub"]
+summary:
+  - "Claude CodeのCode Review機能は複数AIエージェントがPRを並行分析し、バグ・脆弱性・エッジケースを自動検出する"
+  - "1回あたりの平均コストは$15〜$25で、PRの規模によって大きく変動する"
+  - "CLIからclaude review --prコマンド、またはGitHub上で@claude reviewコメントで利用可能"
+  - "AIレビューは人間のレビューを完全に代替するものではなく、技術的問題の早期検出に活用するのが効果的"
+faq:
+  - question: "Claude CodeのCode Review機能の料金はいくらですか？"
+    answer: "1回あたり平均$15〜$25です。ただしPRの変更行数やファイル数によって大きく変動し、大規模なPRでは$100を超えるケースも報告されています。"
+  - question: "Code Review機能はどのプランで使えますか？"
+    answer: "Team/Enterpriseプラン（ベータ）、Pro/Maxプラン（個人CLIから）、API（従量課金）で利用可能です。"
+  - question: "AIコードレビューで人間のレビューは不要になりますか？"
+    answer: "完全には代替できません。AIは機械的に検出できるバグやパターンが得意ですが、ビジネスロジックの妥当性やチーム方針との整合性は人間のレビューが必要です。"
+  - question: "Code Reviewのコストを抑えるにはどうすればいいですか？"
+    answer: "PRを小さく分割する、レビュー対象ファイルを限定する、重要なPRのみに使用するといった方法が有効です。"
 ---
 
 ## Code Review機能とは

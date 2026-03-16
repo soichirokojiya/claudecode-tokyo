@@ -3,12 +3,12 @@ import { CATEGORIES } from "@/lib/articles";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-parchment-50/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 bg-parchment-50/90 backdrop-blur-md border-b border-parchment-200/60">
       <div className="max-w-3xl mx-auto px-4 sm:px-0">
         <div className="flex items-center justify-between h-14">
           <Link
             href="/"
-            className="text-parchment-900 font-semibold tracking-tight text-lg hover:text-accent transition-colors"
+            className="text-parchment-900 font-bold tracking-tight text-lg hover:text-accent transition-colors"
           >
             ClaudeCode<span className="text-accent">.Tokyo</span>
           </Link>
@@ -34,7 +34,7 @@ export default function Header() {
         <nav className="flex gap-1 overflow-x-auto pb-3 -mb-px scrollbar-none">
           <Link
             href="/"
-            className="px-3 py-1.5 text-sm text-parchment-500 hover:text-parchment-900 hover:bg-parchment-100 rounded-md transition-colors whitespace-nowrap font-medium"
+            className="px-3 py-1.5 text-[13px] text-parchment-500 hover:text-parchment-900 hover:bg-parchment-100 rounded-md transition-colors whitespace-nowrap font-semibold"
           >
             All
           </Link>
@@ -42,7 +42,7 @@ export default function Header() {
             <Link
               key={cat.slug}
               href={`/category/${cat.slug}`}
-              className="px-3 py-1.5 text-sm text-parchment-500 hover:text-parchment-900 hover:bg-parchment-100 rounded-md transition-colors whitespace-nowrap font-medium"
+              className="px-3 py-1.5 text-[13px] text-parchment-500 hover:text-parchment-900 hover:bg-parchment-100 rounded-md transition-colors whitespace-nowrap font-semibold"
             >
               {cat.name}
             </Link>

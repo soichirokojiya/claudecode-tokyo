@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: article.description,
       type: "article",
       publishedTime: article.date,
+      ...(article.lastUpdated && { modifiedTime: article.lastUpdated }),
     },
   };
 }
@@ -46,10 +47,11 @@ export default async function ArticlePage({ params }: Props) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: article.title,
     description: article.description,
     datePublished: article.date,
+    ...(article.lastUpdated && { dateModified: article.lastUpdated }),
     author: {
       "@type": "Organization",
       name: "ClaudeCode.Tokyo",
@@ -63,12 +65,35 @@ export default async function ArticlePage({ params }: Props) {
     mainEntityOfPage: `https://claudecode.tokyo/articles/${slug}`,
   };
 
+  const faqSchema =
+    article.faq && article.faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: article.faq.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: f.answer,
+            },
+          })),
+        }
+      : null;
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-0 py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+
       {/* Breadcrumb */}
       <nav className="mb-8 text-sm text-parchment-400 font-medium">
         <Link href="/" className="hover:text-parchment-900 transition-colors">
@@ -85,19 +110,22 @@ export default async function ArticlePage({ params }: Props) {
 
       <article>
         {/* Header */}
-        <header className="mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-xs font-medium text-parchment-500">
+        <header className="mb-10">
+          <div className="flex items-center gap-2.5 mb-4">
+            <span className={`px-2 py-0.5 text-[11px] font-semibold rounded-md ring-1 ${cat.badge}`}>
               {cat.name}
             </span>
-            <span className="text-parchment-300">&middot;</span>
             <time className="text-xs text-parchment-400">{article.date}</time>
-            <span className="text-parchment-300">&middot;</span>
-            <span className="text-xs text-parchment-400">
-              {article.readingTime}分で読める
-            </span>
+            {article.lastUpdated && (
+              <>
+                <span className="text-parchment-300">&middot;</span>
+                <span className="text-xs text-parchment-400">
+                  更新: {article.lastUpdated}
+                </span>
+              </>
+            )}
           </div>
-          <h1 className="text-3xl font-medium tracking-tight text-parchment-900 leading-tight">
+          <h1 className="text-3xl font-bold tracking-tight text-parchment-900 leading-tight">
             {article.title}
           </h1>
           <p className="text-lg text-parchment-500 mt-4 leading-relaxed">
@@ -108,11 +136,74 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         </header>
 
+        {/* Summary Box */}
+        {article.summary && article.summary.length > 0 && (
+          <div className="summary-box mb-10">
+            <h2 className="text-sm font-bold text-parchment-900 mb-3 flex items-center gap-2">
+              <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              この記事のポイント
+            </h2>
+            <ul className="space-y-1.5">
+              {article.summary.map((point, i) => (
+                <li key={i} className="text-sm text-parchment-600 leading-relaxed flex gap-2">
+                  <span className="text-accent font-bold mt-0.5">—</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Table of Contents */}
+        {article.toc && article.toc.length > 3 && (
+          <nav className="toc-box mb-10">
+            <h2 className="text-sm font-bold text-parchment-900 mb-3">目次</h2>
+            <ul className="space-y-1">
+              {article.toc.map((item, i) => (
+                <li key={i} className={item.level === 3 ? "ml-4" : ""}>
+                  <a
+                    href={`#${item.id}`}
+                    className="text-sm text-parchment-500 hover:text-accent transition-colors leading-relaxed block py-0.5"
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+
         {/* Content */}
         <div
           className="prose max-w-none"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
+
+        {/* FAQ Section */}
+        {article.faq && article.faq.length > 0 && (
+          <section className="faq-section mt-12">
+            <h2 className="text-xl font-bold tracking-tight text-parchment-900 mb-6 flex items-center gap-2">
+              <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              よくある質問
+            </h2>
+            <div className="space-y-4">
+              {article.faq.map((item, i) => (
+                <div key={i} className="faq-item">
+                  <h3 className="text-[15px] font-bold text-parchment-900 mb-2">
+                    Q. {item.question}
+                  </h3>
+                  <p className="text-sm text-parchment-600 leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Tags */}
         {article.tags.length > 0 && (
@@ -137,7 +228,7 @@ export default async function ArticlePage({ params }: Props) {
       {/* Related */}
       {related.length > 0 && (
         <section className="mt-16">
-          <h2 className="text-lg font-medium tracking-tight text-parchment-900 mb-6">
+          <h2 className="text-lg font-bold tracking-tight text-parchment-900 mb-6">
             関連記事
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

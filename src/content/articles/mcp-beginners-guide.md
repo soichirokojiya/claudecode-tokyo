@@ -2,8 +2,25 @@
 title: "Claude Code MCP入門｜外部ツール連携の始め方"
 description: "MCPを使えばClaude CodeをSlack・GitHub・DBと連携可能。初心者向けに設定方法とおすすめサーバーを紹介。"
 date: "2026-03-11"
+lastUpdated: "2026-03-16"
 category: "tips"
 tags: ["MCP", "連携", "外部ツール"]
+summary:
+  - "MCP（Model Context Protocol）はClaude Codeと外部サービス（Slack・GitHub・DB・Notion等）を連携する標準規格"
+  - "claude mcp addコマンドで簡単にMCPサーバーを追加でき、GitHub・Slack・PostgreSQL等の公式サーバーが利用可能"
+  - "Tool Search機能によりコンテキスト消費を約85%削減し、多数のMCPサーバー接続時のパフォーマンス低下を防げる"
+  - "セキュリティ面では公式サーバーの優先利用、最小権限の原則、環境変数でのAPIキー管理が重要"
+faq:
+  - question: "MCPとは何ですか？"
+    answer: "MCP（Model Context Protocol）は、Claude Codeと外部サービスをつなぐための標準規格です。MCPを使うことで、Slack・GitHub・データベース・Notionなどの外部サービスとClaude Codeを連携させることができます。"
+  - question: "MCPサーバーの追加方法を教えてください"
+    answer: "ターミナルでclaude mcp add サーバー名 コマンドを実行します。例えばGitHub MCPサーバーの場合は、claude mcp add github npx @modelcontextprotocol/server-githubと入力します。"
+  - question: "MCPサーバーのセキュリティは大丈夫ですか？"
+    answer: "公式（@modelcontextprotocol）のサーバーを優先し、サードパーティのサーバーはGitHubでコードを確認してから使いましょう。APIキーは環境変数で管理し、データベース接続は読み取り専用の権限を使うことが推奨されます。"
+  - question: "MCPサーバーをたくさん接続するとパフォーマンスに影響しますか？"
+    answer: "Claude CodeにはTool Search機能があり、必要なツールだけを選択的に読み込むことでコンテキスト消費を約85%削減します。多数のMCPサーバーを接続してもパフォーマンスへの影響は少なくなっています。"
+  - question: "MCPの初心者におすすめの始め方は？"
+    answer: "まずはGitHub MCPサーバーだけ追加して、issue一覧の表示やPR作成などの操作を試してみましょう。慣れたらSlackやデータベースなど他のサーバーを追加していくのがおすすめです。"
 ---
 
 ## MCPとは？

@@ -3,19 +3,35 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import { addIdsToHtml, generateToc, type TocItem } from "./toc";
 
 const articlesDirectory = path.join(process.cwd(), "src/content/articles");
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
 
 export interface Article {
   slug: string;
   title: string;
   description: string;
   date: string;
+  lastUpdated?: string;
   category: string;
   tags: string[];
   thumbnail?: string;
+  summary?: string[];
+  faq?: FAQ[];
   content: string;
+  toc?: TocItem[];
   readingTime: number;
+}
+
+function calcReadingTime(text: string): number {
+  // 日本語は400文字/分、マークダウン記法を除外
+  const clean = text.replace(/```[\s\S]*?```/g, "").replace(/[#*`\[\]()|\->/]/g, "");
+  return Math.max(3, Math.ceil(clean.length / 400));
 }
 
 export function getAllArticles(): Omit<Article, "content">[] {
@@ -33,10 +49,13 @@ export function getAllArticles(): Omit<Article, "content">[] {
         title: data.title,
         description: data.description,
         date: data.date,
+        lastUpdated: data.lastUpdated,
         category: data.category,
         tags: data.tags || [],
         thumbnail: data.thumbnail,
-        readingTime: Math.ceil(content.length / 600),
+        summary: data.summary,
+        faq: data.faq,
+        readingTime: calcReadingTime(content),
       };
     });
 
@@ -55,18 +74,23 @@ export async function getArticleBySlug(
   const { data, content } = matter(fileContents);
 
   const processedContent = await remark().use(html).process(content);
-  const contentHtml = processedContent.toString();
+  const contentHtml = addIdsToHtml(processedContent.toString());
+  const toc = generateToc(content);
 
   return {
     slug,
     title: data.title,
     description: data.description,
     date: data.date,
+    lastUpdated: data.lastUpdated,
     category: data.category,
     tags: data.tags || [],
     thumbnail: data.thumbnail,
+    summary: data.summary,
+    faq: data.faq,
     content: contentHtml,
-    readingTime: Math.ceil(content.length / 600),
+    toc,
+    readingTime: calcReadingTime(content),
   };
 }
 
@@ -77,12 +101,12 @@ export function getArticlesByCategory(
 }
 
 export const CATEGORIES = [
-  { slug: "getting-started", name: "入門", emoji: "🚀", color: "bg-blue-50 text-blue-600" },
-  { slug: "tips", name: "Tips", emoji: "💡", color: "bg-green-50 text-green-600" },
-  { slug: "news", name: "ニュース", emoji: "📰", color: "bg-purple-50 text-purple-600" },
-  { slug: "comparison", name: "比較", emoji: "⚖️", color: "bg-amber-50 text-amber-600" },
-  { slug: "usecase", name: "活用事例", emoji: "🎯", color: "bg-teal-50 text-teal-600" },
-  { slug: "pricing", name: "料金", emoji: "💰", color: "bg-rose-50 text-rose-600" },
+  { slug: "getting-started", name: "入門", badge: "bg-emerald-50 text-emerald-700 ring-emerald-200/60" },
+  { slug: "tips", name: "Tips", badge: "bg-violet-50 text-violet-700 ring-violet-200/60" },
+  { slug: "news", name: "ニュース", badge: "bg-sky-50 text-sky-700 ring-sky-200/60" },
+  { slug: "comparison", name: "比較", badge: "bg-amber-50 text-amber-700 ring-amber-200/60" },
+  { slug: "usecase", name: "活用事例", badge: "bg-rose-50 text-rose-700 ring-rose-200/60" },
+  { slug: "pricing", name: "料金", badge: "bg-teal-50 text-teal-700 ring-teal-200/60" },
 ] as const;
 
 export function getCategoryMeta(slug: string) {

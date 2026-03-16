@@ -146,3 +146,42 @@ html, body {
   border-top: 1px solid var(--color-parchment-200);
   margin: 2em 0;
 }
+
+/* Summary Box */
+.summary-box {
+  background: linear-gradient(135deg, #fef7f3 0%, #fafaf5 100%);
+  border: 1px solid #f0d8ca;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+
+/* Table of Contents */
+.toc-box {
+  background: var(--color-parchment-100);
+  border: 1px solid var(--color-parchment-200);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+
+/* FAQ Section */
+.faq-section {
+  background: var(--color-parchment-50);
+  border: 1px solid var(--color-parchment-200);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+}
+
+.faq-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-parchment-200);
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.faq-item:first-child {
+  padding-top: 0;
+}

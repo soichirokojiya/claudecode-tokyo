@@ -2,8 +2,25 @@
 title: "Claude Code Hooksの使い方｜自動化ワークフロー入門"
 description: "Claude Code Hooksでコード保存時の自動フォーマットやコミット前チェックを設定する方法を初心者向けに解説。"
 date: "2026-03-12"
+lastUpdated: "2026-03-16"
 category: "tips"
 tags: ["Hooks", "自動化", "ワークフロー"]
+summary:
+  - "HooksはClaude Codeの動作前後に自動でコマンドを実行する仕組みで、.claude/settings.jsonに設定する"
+  - "PreToolUse・PostToolUse・Notification・Stopの4つのイベントに対応している"
+  - "自動フォーマット、危険コマンドのブロック、コミット前テスト、Slack通知などの実用レシピがある"
+  - "セキュリティリスクとパフォーマンス影響を考慮し、必要最小限の設定から始めるのが推奨"
+faq:
+  - question: "Claude Code Hooksとは何ですか？"
+    answer: "Hooksは、Claude Codeの動作の前後に自動でシェルコマンドを実行する仕組みです。例えばファイル保存時に自動フォーマットしたり、コミット前にテストを実行したりできます。"
+  - question: "Hooksはどこに設定しますか？"
+    answer: ".claude/settings.jsonファイルに設定します。PreToolUse（ツール実行前）、PostToolUse（ツール実行後）、Notification（通知時）、Stop（セッション終了時）の4つのイベントに対してコマンドを登録できます。"
+  - question: "Hooksにセキュリティ上のリスクはありますか？"
+    answer: "はい、Hooksでは任意のシェルコマンドが実行されるため、信頼できないプロジェクトのHooks設定をそのまま使うのは危険です。設定内容を必ず確認してから利用してください。"
+  - question: "Hooksを設定するとClaude Codeが遅くなりますか？"
+    answer: "すべての操作にHooksを設定するとパフォーマンスに影響が出ることがあります。必要なものだけに絞って設定することが推奨されています。"
+  - question: "Hooksのおすすめの始め方は？"
+    answer: "まずはPostToolUseイベントでPrettierによる自動フォーマットを設定するのがおすすめです。効果を実感しやすく、設定もシンプルです。慣れたら危険コマンドのブロックやSlack通知などを追加していきましょう。"
 ---
 
 ## Hooksとは？

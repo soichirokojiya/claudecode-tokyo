@@ -17,26 +17,22 @@ export default function ArticleCard({
   description,
   date,
   category,
-  readingTime,
 }: Props) {
   const cat = getCategoryMeta(category);
 
   return (
     <Link href={`/articles/${slug}`} className="group block">
-      <article className="rounded-[12px] border border-parchment-200 bg-transparent px-6 py-5 transition-colors hover:border-parchment-300 hover:bg-parchment-100">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-xs font-medium text-parchment-500">
+      <article className="rounded-xl bg-white ring-1 ring-parchment-200/60 shadow-sm px-6 py-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 hover:ring-parchment-300">
+        <div className="flex items-center gap-2.5 mb-3">
+          <span className={`px-2 py-0.5 text-[11px] font-semibold rounded-md ring-1 ${cat.badge}`}>
             {cat.name}
           </span>
-          <span className="text-parchment-300">&middot;</span>
           <time className="text-xs text-parchment-400">{date}</time>
-          <span className="text-parchment-300">&middot;</span>
-          <span className="text-xs text-parchment-400">{readingTime}分</span>
         </div>
-        <h2 className="text-parchment-900 font-medium tracking-tight leading-snug group-hover:text-accent transition-colors">
+        <h2 className="text-[15px] font-bold tracking-tight text-parchment-900 leading-snug group-hover:text-accent transition-colors duration-200">
           {title}
         </h2>
-        <p className="text-parchment-500 text-[14px] leading-relaxed mt-1.5 line-clamp-2">
+        <p className="text-parchment-500 text-[13px] leading-relaxed mt-2 line-clamp-2">
           {description}
         </p>
       </article>
