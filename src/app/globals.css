@@ -95,11 +95,18 @@ html, body {
   font-style: italic;
 }
 
+.prose .table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5em 0;
+}
+
 .prose table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5em 0;
   font-size: 0.875rem;
+  min-width: 400px;
 }
 
 .prose th, .prose td {

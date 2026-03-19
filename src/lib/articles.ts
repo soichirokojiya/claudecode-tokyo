@@ -25,6 +25,8 @@ export interface Article {
   summary?: string[];
   faq?: FAQ[];
   author?: string;
+  featured?: boolean;
+  priority?: number;
   content: string;
   toc?: TocItem[];
   readingTime: number;
@@ -58,13 +60,18 @@ export function getAllArticles(): Omit<Article, "content">[] {
         summary: data.summary,
         faq: data.faq,
         author: data.author || "ClaudeCode.Tokyo編集部",
+        featured: data.featured || false,
+        priority: data.priority || 0,
         readingTime: calcReadingTime(content),
       };
     });
 
-  return articles.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  return articles.sort((a, b) => {
+    // featured articles first, then by priority (higher first), then by date
+    if (a.featured !== b.featured) return a.featured ? -1 : 1;
+    if ((a.priority || 0) !== (b.priority || 0)) return (b.priority || 0) - (a.priority || 0);
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
 }
 
 export async function getArticleBySlug(
@@ -77,7 +84,15 @@ export async function getArticleBySlug(
   const { data, content } = matter(fileContents);
 
   const processedContent = await remark().use(remarkGfm).use(html, { sanitize: false }).process(content);
-  const contentHtml = addIdsToHtml(processedContent.toString());
+  // Wrap tables in responsive container
+  const rawHtml = processedContent.toString().replace(
+    /<table>/g,
+    '<div class="table-wrapper"><table>'
+  ).replace(
+    /<\/table>/g,
+    '</table></div>'
+  );
+  const contentHtml = addIdsToHtml(rawHtml);
   const toc = generateToc(content);
 
   return {

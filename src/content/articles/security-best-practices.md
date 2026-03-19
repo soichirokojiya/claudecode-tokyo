@@ -2,8 +2,9 @@
 title: "Claude Codeのセキュリティ設定ベストプラクティス"
 description: "Claude Codeのパーミッションシステム、信頼できないリポジトリの扱い方、プロンプトインジェクション対策、dangerously-skip-permissionsの注意点を解説。"
 date: "2026-03-16"
-lastUpdated: "2026-03-16"
+lastUpdated: "2026-03-20"
 category: "getting-started"
+priority: 30
 thumbnail: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?w=800&h=500&fit=crop&q=80"
 tags: ["セキュリティ", "設定", "パーミッション", "安全性"]
 author: "ClaudeCode.Tokyo編集部"
@@ -25,6 +26,8 @@ faq:
     answer: "プロジェクトルートの.claude/settings.jsonにチーム共通のパーミッション設定を記述し、リポジトリにコミットしてください。これにより、チームメンバー全員が同じセキュリティ設定でClaude Codeを使用できます。個人設定はホームディレクトリの~/.claude/settings.jsonで上書き可能です。"
 ---
 
+Claude Codeは強力なツールだからこそ、セキュリティ設定を正しく理解して使うことが不可欠です。パーミッション設定を間違えると、意図しないファイル変更やデータ漏洩のリスクが生じます。本記事では、パーミッションの仕組みからプロンプトインジェクション対策、チーム運用のポリシーまで、Claude Codeを安全に使うためのベストプラクティスを網羅的に解説します。
+
 ## なぜセキュリティ設定が重要なのか
 
 Claude Codeは、ターミナル上でファイルの読み書き・コマンド実行・ネットワークアクセスなど強力な操作を実行できるツールです。この強力さゆえに、**適切なセキュリティ設定なしに使うとリスクが生じます**。
@@ -34,7 +37,7 @@ Claude Codeは、ターミナル上でファイルの読み書き・コマンド
 > 参考: [Claude Code ドキュメント - Security](https://docs.anthropic.com/en/docs/claude-code/security)
 > 参考: [CSIS - AI Security Best Practices](https://www.csis.org/analysis)
 
-## パーミッションシステムの理解
+## パーミッションシステムはどう動く？3段階の制御モデル
 
 Claude Codeのパーミッションシステムは、ツールごとに実行許可を制御する仕組みです。
 
@@ -101,7 +104,9 @@ Claude Codeのパーミッションシステムは、ツールごとに実行許
 
 プロジェクト設定とユーザー設定が競合した場合、**より制限の厳しい方**が優先されます。
 
-## 信頼できないリポジトリの扱い方
+パーミッション設定をさらに強化したい方は、[Hooks機能ガイド](/articles/hooks-guide)でカスタムセキュリティスクリプトの挿入方法を確認してください。
+
+## 信頼できないリポジトリを開くとき、何に注意すべき？
 
 ### リスクシナリオ
 
@@ -155,7 +160,7 @@ claude --trust-repo
 claude --no-trust-repo
 ```
 
-## プロンプトインジェクション対策
+## プロンプトインジェクション攻撃からどう守る？
 
 プロンプトインジェクションは、AIツール特有のセキュリティリスクです。悪意あるテキストがファイルやデータに埋め込まれ、AIがその指示に従ってしまう攻撃です。
 
@@ -225,7 +230,9 @@ claude --no-trust-repo
 
 CLAUDE.mdに禁止事項を明記しておくことで、プロンプトインジェクションを受けた場合でもClaude Codeが安全側の判断をする確率が高まります。
 
-## dangerously-skip-permissionsの注意点
+CLAUDE.mdの書き方については[CLAUDE.mdガイド](/articles/claude-md-guide)で詳しく解説しています。
+
+## dangerously-skip-permissionsはいつ使っていい？注意点まとめ
 
 `--dangerously-skip-permissions`フラグは、すべてのパーミッション確認をスキップするオプションです。名前に「dangerously」が含まれている通り、**非常に危険なフラグ**です。
 
@@ -267,7 +274,7 @@ jobs:
 
 ポイントは、`--dangerously-skip-permissions`と`--sandbox`を**併用**することです。パーミッション確認はスキップしつつも、サンドボックスによるファイルシステム・ネットワークの制限は維持できます。
 
-## チーム運用でのセキュリティポリシー
+## チームで安全に使うには？セキュリティポリシーの統一方法
 
 ### 推奨設定テンプレート
 
@@ -313,8 +320,10 @@ jobs:
 
 ## まとめ
 
-Claude Codeのセキュリティは、**パーミッションシステムの適切な設定**が基本です。デフォルトのAsk設定を安易にAllowに変更せず、必要最小限の権限だけを許可する原則を守りましょう。
+- **パーミッションは最小権限の原則で設定** — デフォルトのAsk設定を安易にAllowに変更しない
+- **信頼できないリポジトリではサンドボックスモードを活用** — CLAUDE.mdの内容を事前に確認する習慣をつける
+- **プロンプトインジェクション対策として機密ファイルをDenyに設定** — .envやcredentialsの読み取りを制限する
+- **dangerously-skip-permissionsは自動化環境でのみ使用** — 対話型利用では絶対に使わない
+- **チーム共通の設定を.claude/settings.jsonで管理** — リポジトリにコミットして全員で統一する
 
-信頼できないリポジトリではサンドボックスモードを活用し、CLAUDE.mdの内容を事前に確認する習慣をつけてください。`dangerously-skip-permissions`は自動化環境でのみ使用し、対話型利用では絶対に使わないでください。
-
-セキュリティは一度設定して終わりではなく、チーム全体で継続的に見直していくことが重要です。
+企業レベルのセキュリティ対策については[エンタープライズClaude Codeセキュリティ最新動向](/articles/enterprise-security-claude)を、チーム導入の進め方は[Claude Code企業導入ガイド](/articles/company-adoption-guide)をご覧ください。

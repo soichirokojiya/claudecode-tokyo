@@ -109,7 +109,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} ClaudeCode.Tokyo
           </p>
           <p className="text-xs text-parchment-400/60 font-sans">
-            運営：<a href="https://commonfuture.co.jp" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Common Future &amp; Co. 株式会社</a>
+            運営：<a href="https://www.cfac.co.jp/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Common Future &amp; Co. 株式会社</a>
           </p>
           <p className="text-xs text-parchment-400/40 font-sans">
             Powered by Claude Code

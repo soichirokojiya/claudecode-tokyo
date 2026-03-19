@@ -2,7 +2,7 @@
 title: "Claude Code × GitHub Actions：PR自動レビューからissue実装まで"
 description: "Claude CodeのGitHub Actions連携を完全解説。claude-code-actionの導入方法、@claudeメンション、Bedrock/Vertex認証、CI/CDパイプライン統合まで網羅。"
 date: "2026-03-16"
-lastUpdated: "2026-03-16"
+lastUpdated: "2026-03-20"
 category: "tips"
 thumbnail: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=500&fit=crop&q=80"
 tags: ["GitHub Actions", "CI/CD", "自動化", "PR レビュー", "claude-code-action"]
@@ -25,6 +25,8 @@ faq:
     answer: "自動生成されたコードは必ず人間がレビューしてからマージすべきです。claude-code-actionはPRとして提出するため、通常のレビュープロセスに組み込まれます。CLAUDE.mdでコーディング規約を定義しておくと、品質をさらに向上できます。"
 ---
 
+PRレビューの待ち時間が長い、issueの実装に着手するまでが遅い——こうした開発チームのボトルネックを解消するのがClaude CodeとGitHub Actionsの連携です。@claudeメンション一つでPR自動レビューやissueからの自動実装が可能になり、開発ワークフローを劇的に効率化できます。本記事では、セットアップから実践的な活用パターン、コスト管理まで網羅的に解説します。
+
 ## Claude Code × GitHub Actionsとは
 
 Claude CodeのGitHub Actions連携（**claude-code-action**）は、GitHub上のワークフローにClaude Codeを組み込む公式ツールです。PRへの自動レビュー、issueからの自動実装、CI/CDパイプラインへの統合など、開発プロセスのあらゆる段階でAIを活用できます。
@@ -33,7 +35,7 @@ Claude CodeのGitHub Actions連携（**claude-code-action**）は、GitHub上の
 
 ---
 
-## claude-code-actionのセットアップ
+## claude-code-actionを導入するには？3ステップのセットアップ
 
 ### Step 1：必要なSecretsの設定
 
@@ -99,7 +101,7 @@ jobs:
 
 ---
 
-## 主要ユースケース
+## 何ができる？主要ユースケース3選
 
 ### ユースケース1：PR自動レビュー
 
@@ -180,7 +182,7 @@ jobs:
 
 ---
 
-## 認証方式の比較
+## どの認証方式を選ぶべき？3つの方式を比較
 
 ### 3つの認証方式
 
@@ -223,7 +225,9 @@ steps:
 
 ---
 
-## CLAUDE.mdとの連携
+## CLAUDE.mdでプロジェクトルールを自動適用するには？
+
+CLAUDE.mdの書き方について詳しくは[CLAUDE.mdガイド](/articles/claude-md-guide)を参照してください。
 
 ### プロジェクト固有のルールを自動適用
 
@@ -250,7 +254,7 @@ steps:
 
 ---
 
-## 実践的なワークフロー構成
+## 最適なCI/CDパイプラインはどう構成する？
 
 ### 推奨するCI/CDパイプライン
 
@@ -271,7 +275,7 @@ PR作成
 
 ---
 
-## コスト管理のベストプラクティス
+## API費用を抑えるには？コスト管理のベストプラクティス
 
 ### コストを抑えるテクニック
 
@@ -309,14 +313,12 @@ PR作成
 
 ## まとめ
 
-Claude Code × GitHub Actionsの連携は、開発ワークフローを大幅に効率化します。`@claude`メンション一つでPRレビューやissue実装が自動化され、人間のエンジニアはより創造的な作業に集中できるようになります。
+- **@claudeメンション一つでPRレビューやissue実装を自動化** — 開発チームのボトルネックを解消
+- **まずはPR自動レビューから始めるのが最も効果的** — 導入しやすく、レビュー待ち時間を数分に短縮
+- **CLAUDE.mdでプロジェクトルールを定義すると出力品質が安定** — コーディング規約やテスト基準を自動適用
+- **Anthropic API・AWS Bedrock・Google Vertex AIの3認証方式に対応** — 企業のセキュリティ要件にも柔軟に対応
+- **コスト管理にはmax_turnsの制限とモデル選択が重要** — Sonnet 4.6を使えばコストを50-80%削減可能
 
-導入のポイントは以下の3点です。
-
-1. **まずはPR自動レビューから始める** — 最も導入しやすく、効果が実感しやすい
-2. **CLAUDE.mdでプロジェクトルールを定義する** — AIの出力品質が安定する
-3. **段階的に自動化範囲を拡大する** — issue実装→CI修正と徐々に広げる
+より広い範囲のワークフロー自動化については[Claude Codeワークフロー自動化ガイド](/articles/claude-code-workflow-automation)を、コードレビュー機能の詳細は[コードレビュー機能の使い方](/articles/code-review-feature)もご覧ください。
 
 > 参考：[Claude Code公式ドキュメント](https://docs.anthropic.com/en/docs/claude-code/github-actions)、[GitHub Marketplace - claude-code-action](https://github.com/marketplace/actions/claude-code-action)
-
-企業のプライベートリポジトリでもAWS BedrockやGoogle Vertex AI経由で安全に利用できるため、セキュリティ要件の厳しい環境でも導入を検討する価値があります。

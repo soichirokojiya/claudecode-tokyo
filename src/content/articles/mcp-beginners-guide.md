@@ -2,7 +2,7 @@
 title: "Claude Code MCP入門｜外部ツール連携の始め方"
 description: "MCPを使えばClaude CodeをSlack・GitHub・DBと連携可能。初心者向けに設定方法とおすすめサーバーを紹介。"
 date: "2026-03-11"
-lastUpdated: "2026-03-16"
+lastUpdated: "2026-03-20"
 category: "tips"
 thumbnail: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=500&fit=crop&q=80"
 tags: ["MCP", "連携", "外部ツール"]
@@ -24,13 +24,15 @@ faq:
     answer: "まずはGitHub MCPサーバーだけ追加して、issue一覧の表示やPR作成などの操作を試してみましょう。慣れたらSlackやデータベースなど他のサーバーを追加していくのがおすすめです。"
 ---
 
-## MCPとは？
+「Claude Codeをもっと便利にしたい」「SlackやGitHubと連携できたら最高なのに」と思ったことはありませんか？MCPを使えば、Claude Codeの活用範囲を外部サービスにまで広げることができます。この記事ではMCPの仕組みから設定方法まで、初心者向けにやさしく解説します。
+
+## MCPとは？Claude Codeと外部サービスをつなぐ仕組み
 
 MCP（Model Context Protocol）は、Claude Codeと外部ツールを**つなぐための標準規格**です。
 
 通常、Claude Codeはターミナル内のファイルやコマンドしか扱えません。しかしMCPを使えば、Slack、GitHub、データベース、Notionなど、さまざまな外部サービスと連携できます。
 
-## イメージ
+## MCPの仕組みをイメージで理解しよう
 
 ```
 Claude Code ←→ MCP ←→ Slack
@@ -41,7 +43,7 @@ Claude Code ←→ MCP ←→ Slack
 
 MCPは「通訳」のような役割です。Claude Codeと外部サービスの間に入って、やり取りを仲介してくれます。
 
-## MCPサーバーの追加方法
+## MCPサーバーを追加するには？具体的な手順
 
 ターミナルで以下のコマンドを実行します。
 
@@ -57,7 +59,7 @@ claude mcp add github npx @modelcontextprotocol/server-github
 
 これで、Claude Codeから「このリポジトリのissue一覧を見せて」のような指示ができるようになります。
 
-## 人気のMCPサーバー
+## どれを使うべき？人気MCPサーバー5選
 
 | サーバー | 用途 | コマンド例 |
 |---|---|---|
@@ -67,7 +69,7 @@ claude mcp add github npx @modelcontextprotocol/server-github
 | **Filesystem** | ファイルアクセス | `npx @modelcontextprotocol/server-filesystem` |
 | **Brave Search** | Web検索 | `npx @modelcontextprotocol/server-brave-search` |
 
-## Docker MCP Toolkitが便利
+## Docker MCP Toolkitで手軽にセットアップ
 
 Docker社が提供するMCP Toolkitを使うと、MCPサーバーのセットアップが簡単になります。
 
@@ -77,15 +79,15 @@ docker run -it --rm mcp-toolkit
 
 コンテナ内でMCPサーバーが動くため、環境を汚さずに利用できます。
 
-## Tool Search機能でコスト削減
+## Tool Search機能でコンテキスト消費を85%削減
 
 Claude Codeには**Tool Search機能**があり、MCPサーバーのツール情報をすべて読み込む代わりに、必要なツールだけを選択的に読み込みます。
 
 これにより、**コンテキスト消費を約85%削減**できます。たくさんのMCPサーバーを接続していても、パフォーマンスへの影響が少なくなります。
 
-## セキュリティの注意点
+## MCPサーバー利用時のセキュリティ注意点
 
-MCPサーバーは外部が作成したプログラムです。以下の点に注意してください。
+MCPサーバーは外部が作成したプログラムです。以下の点に注意してください。セキュリティ全般のベストプラクティスについては[セキュリティ対策ガイド](/articles/security-best-practices)も参照してください。
 
 ### 信頼できるサーバーのみ使う
 - 公式（@modelcontextprotocol）のサーバーを優先
@@ -103,7 +105,7 @@ export GITHUB_TOKEN=your_token_here
 claude mcp add github npx @modelcontextprotocol/server-github
 ```
 
-## 初心者におすすめの始め方
+## 初心者がMCPを始めるための3ステップ
 
 1. まずは**GitHub MCPサーバー**だけ追加してみる
 2. 「issue一覧を見せて」「PRを作って」などの操作を試す
@@ -111,4 +113,9 @@ claude mcp add github npx @modelcontextprotocol/server-github
 
 ## まとめ
 
-MCPを使えば、Claude Codeが「ターミナル内のAI」から「あらゆるサービスと連携するAIアシスタント」に進化します。まずはGitHub連携から始めて、少しずつ活用範囲を広げていきましょう。
+- **MCPはClaude Codeと外部サービス（GitHub・Slack・DB・Notionなど）を連携させるための標準規格**
+- **`claude mcp add`コマンドひとつで簡単にMCPサーバーを追加**でき、すぐに使い始められる
+- **Tool Search機能によりコンテキスト消費を約85%削減**できるので、多数のサーバーを接続してもパフォーマンスへの影響は少ない
+- **まずはGitHub MCPサーバーから始める**のがおすすめ
+
+MCPをさらに高度に活用したい方は[MCPサーバー上級活用ガイド](/articles/mcp-server-advanced)を、Claude Codeの基本的な使い方をまだ学んでいない方は[Claude Codeとは？](/articles/what-is-claude-code)から始めましょう。

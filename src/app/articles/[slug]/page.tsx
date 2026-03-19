@@ -57,7 +57,7 @@ export default async function ArticlePage({ params }: Props) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "TechArticle",
     headline: article.title,
     description: article.description,
     datePublished: article.date,
@@ -65,14 +65,46 @@ export default async function ArticlePage({ params }: Props) {
     author: {
       "@type": "Person",
       name: article.author || "ClaudeCode.Tokyo編集部",
-      url: "https://claudecode.tokyo",
+      url: "https://claudecode.tokyo/about",
     },
     publisher: {
       "@type": "Organization",
       name: "ClaudeCode.Tokyo",
       url: "https://claudecode.tokyo",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://claudecode.tokyo/og-image.png",
+      },
     },
     mainEntityOfPage: `https://claudecode.tokyo/articles/${slug}`,
+    ...(article.thumbnail && { image: article.thumbnail }),
+    wordCount: article.content.replace(/<[^>]*>/g, "").length,
+    inLanguage: "ja",
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "トップ",
+        item: "https://claudecode.tokyo",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: cat.name,
+        item: `https://claudecode.tokyo/category/${article.category}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: article.title,
+        item: `https://claudecode.tokyo/articles/${slug}`,
+      },
+    ],
   };
 
   const faqSchema =
@@ -96,6 +128,10 @@ export default async function ArticlePage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       {faqSchema && (
         <script

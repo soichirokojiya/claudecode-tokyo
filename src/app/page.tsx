@@ -67,14 +67,50 @@ function ArticleThumbnail({ slug, category, thumbnail, sizes, priority = false }
   return <ArticleVisual category={category} size="fill" slugVisual={visual} />;
 }
 
+// Pick articles ensuring category diversity for a section
+function diversePick<T extends { category: string }>(pool: T[], count: number): { picked: T[]; remaining: T[] } {
+  const picked: T[] = [];
+  const remaining = [...pool];
+  const usedCategories = new Set<string>();
+
+  // First pass: pick one from each unique category
+  for (let i = 0; i < remaining.length && picked.length < count; i++) {
+    if (!usedCategories.has(remaining[i].category)) {
+      usedCategories.add(remaining[i].category);
+      picked.push(remaining[i]);
+      remaining.splice(i, 1);
+      i--;
+    }
+  }
+
+  // Second pass: fill remaining slots by date order
+  while (picked.length < count && remaining.length > 0) {
+    picked.push(remaining.shift()!);
+  }
+
+  return { picked, remaining };
+}
+
 export default function Home() {
   const rawArticles = getAllArticles();
   const articles = deduplicateThumbnails(rawArticles);
+
+  // Featured: first article (featured flag or highest priority)
   const featured = articles[0];
-  const secondary = articles.slice(1, 3);
-  const sidebar = articles.slice(3, 7);
-  const gridStories = articles.slice(7, 15);
-  const moreStories = articles.slice(15);
+  const afterFeatured = articles.slice(1);
+
+  // Latest: 2 most recent (different categories from featured)
+  const secondary = afterFeatured.slice(0, 2);
+  const afterSecondary = afterFeatured.slice(2);
+
+  // Trending: diverse category mix for discovery
+  const { picked: sidebar, remaining: afterSidebar } = diversePick(afterSecondary, 4);
+
+  // More Stories: next 8 with category diversity
+  const { picked: gridStories, remaining: afterGrid } = diversePick(afterSidebar, 8);
+
+  // Archives: everything else
+  const moreStories = afterGrid;
 
   return (
     <>

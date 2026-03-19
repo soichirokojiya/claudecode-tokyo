@@ -2,7 +2,7 @@
 title: "Claude Code Hooksの使い方｜自動化ワークフロー入門"
 description: "Claude Code Hooksでコード保存時の自動フォーマットやコミット前チェックを設定する方法を初心者向けに解説。"
 date: "2026-03-12"
-lastUpdated: "2026-03-16"
+lastUpdated: "2026-03-20"
 category: "tips"
 thumbnail: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&h=500&fit=crop&q=80"
 tags: ["Hooks", "自動化", "ワークフロー"]
@@ -24,13 +24,15 @@ faq:
     answer: "まずはPostToolUseイベントでPrettierによる自動フォーマットを設定するのがおすすめです。効果を実感しやすく、設定もシンプルです。慣れたら危険コマンドのブロックやSlack通知などを追加していきましょう。"
 ---
 
-## Hooksとは？
+「Claude Codeでファイルを保存するたびに手動でフォーマットするのが面倒」「危険なコマンドの実行を防ぎたい」と感じたことはありませんか？Hooksを使えば、Claude Codeの動作に自動化ルールを組み込めます。この記事では設定方法と実用レシピ5選を紹介します。
+
+## Hooksとは？Claude Codeに自動化ルールを組み込む仕組み
 
 Hooksは、Claude Codeの動作の前後に**自動でコマンドを実行する仕組み**です。
 
 例えば、「ファイルを保存したら自動でフォーマットする」「コミット前にテストを実行する」といったルールを設定できます。
 
-## どこで設定する？
+## Hooksはどこで設定する？settings.jsonの書き方
 
 Hooksは `.claude/settings.json` に設定します。
 
@@ -49,7 +51,7 @@ Hooksは `.claude/settings.json` に設定します。
 
 この例では、Claude Codeがファイルを編集・作成するたびに、自動でPrettierによるフォーマットが実行されます。
 
-## 主なイベント
+## どのタイミングで発火する？4つのイベント種類
 
 | イベント | タイミング |
 |---|---|
@@ -58,7 +60,7 @@ Hooksは `.claude/settings.json` に設定します。
 | **Notification** | 通知の送信時 |
 | **Stop** | セッション終了時 |
 
-## 実用的なレシピ5選
+## すぐに使えるHooksの実用レシピ5選
 
 ### 1. ファイル保存時に自動フォーマット
 
@@ -138,14 +140,19 @@ Hooksは `.claude/settings.json` に設定します。
 }
 ```
 
-## 注意点
+## Hooks利用時の注意点
 
 ### セキュリティに気をつける
-Hooksでは任意のシェルコマンドが実行されます。信頼できないプロジェクトのHooks設定をそのまま使わないでください。
+Hooksでは任意のシェルコマンドが実行されます。信頼できないプロジェクトのHooks設定をそのまま使わないでください。セキュリティ全般については[セキュリティベストプラクティス](/articles/security-best-practices)も参考になります。
 
 ### パフォーマンスへの影響
 すべての操作にHooksをつけると、Claude Codeの動作が遅くなることがあります。必要なものだけ設定しましょう。
 
 ## まとめ
 
-Hooksを使えば、Claude Codeをプロジェクトのワークフローに合わせてカスタマイズできます。まずは「自動フォーマット」から始めて、徐々にレシピを増やしていくのがおすすめです。
+- **Hooksは`.claude/settings.json`に設定するだけで、Claude Codeの動作前後にコマンドを自動実行**できる
+- **PreToolUse・PostToolUse・Notification・Stopの4つのイベント**に対応
+- **自動フォーマット、危険コマンドのブロック、コミット前テスト、Slack通知**などの実用レシピがすぐに使える
+- **セキュリティとパフォーマンスを考慮し、必要最小限から始める**のがポイント
+
+Hooksと組み合わせてさらに効率化したい方は、[カスタムスキルガイド](/articles/custom-skills-guide)や[生産性を3倍にするワークフロー10選](/articles/productivity-workflows)もあわせてお読みください。
