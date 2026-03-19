@@ -1,9 +1,9 @@
 name: Twitter Auto RT
 
 on:
-  # Run every 2 hours
+  # Run every 6 hours
   schedule:
-    - cron: "30 */2 * * *"
+    - cron: "30 3,9,15,21 * * *"
   # Manual trigger
   workflow_dispatch:
 
