@@ -66,12 +66,20 @@ export function getAllArticles(): Omit<Article, "content">[] {
       };
     });
 
-  return articles.sort((a, b) => {
-    // featured articles first, then by priority (higher first), then by date
-    if (a.featured !== b.featured) return a.featured ? -1 : 1;
+  // Sort by date first, then apply featured logic
+  articles.sort((a, b) => {
     if ((a.priority || 0) !== (b.priority || 0)) return (b.priority || 0) - (a.priority || 0);
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
+
+  // If any article has featured: true, move it to the top
+  const featuredIdx = articles.findIndex((a) => a.featured);
+  if (featuredIdx > 0) {
+    const [feat] = articles.splice(featuredIdx, 1);
+    articles.unshift(feat);
+  }
+
+  return articles;
 }
 
 export async function getArticleBySlug(

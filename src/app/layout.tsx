@@ -38,6 +38,14 @@ export const metadata: Metadata = {
     description:
       "Claude Code（Anthropic公式CLI）の使い方・Tips・最新ニュース・AIエージェント開発の情報を日本語で網羅的にお届け。",
     url: "https://claudecode.tokyo",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "ClaudeCode.Tokyo - Claude Code & AIエージェントのニュースメディア",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -46,6 +54,7 @@ export const metadata: Metadata = {
     title: "ClaudeCode.Tokyo | Claude Code & エージェントのニュースメディア",
     description:
       "Claude Codeの使い方・Tips・最新ニュース・AIエージェント開発の情報を日本語で網羅的にお届け。",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
